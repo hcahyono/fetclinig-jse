@@ -11,4 +11,5 @@ class Hitung extends Model
 
 	//kolom yang tidak boleh di write
 	protected $guarded = ['id'];
+
 }

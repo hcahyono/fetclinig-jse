@@ -25,7 +25,7 @@ class Pasien extends Model
 		protected $guarded = ['field', 'field2']; //daftar field yang di blacklist
 		protected $fillable =  ['field', 'field2']; //daftar field yang boleh di tulis
 	  */
-  	protected $guarded = ['id', 'kode'];
+  	protected $guarded = ['id'];
 
   	//created_at dan updated_at maintening by eloquent
 		// public $timestamps = false;

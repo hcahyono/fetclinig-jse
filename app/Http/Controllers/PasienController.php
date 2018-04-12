@@ -10,6 +10,7 @@ use App\Http\Requests\PasienRequest;
 
 use App\Models\Pasien;
 use App\Models\Hewan;
+use App\Models\Hitung;
 use Carbon\Carbon;
 use Auth;
 
@@ -60,6 +61,7 @@ class PasienController extends Controller
         $user = auth()->user();
 
         $pasien = new Pasien;
+        $pasien->kode       = $this->getKodePasien();
         $pasien->nama       = $request->nama;
         $pasien->gender     = $request->gender;
         $pasien->telepon    = $request->telepon;
@@ -86,12 +88,44 @@ class PasienController extends Controller
           * dan belongsTo pasien() yang ada pada model hewan
           */
           $hewan->pasien()->associate($pasien);
-          $hewan->save();
+
+          if( $hewan->save() )
+          {
+            //update nomer urut untuk kode pasien di tabel hitung
+            $this->setNomerPasien();
+          }
         }
 
         return redirect('/pasien');
     }
 
+    /*
+    * membuat sebuah fungsi untuk mengambil nomer pada tabel hitung
+    * yang akan digunakan untuk membuat kode pasien, kode terdiri dari
+    * tanggal saat pasien di daftarkan dan nomor urut pendaftaran pasien
+    */
+    public function getKodePasien()
+    {
+        //ambil nomer dari tabel hitung yang namanya pasien
+        $getKode = Hitung::where('nama', 'pasien')->firstOrFail();
+        $dateNow = date('Ymd');
+        $kode = $dateNow.$getKode->nomer;
+        return (int)$kode;
+    }
+
+    /*
+    * membuat fungsi untuk melakukan update nilai pada kolom nomer tabel hitung
+    * fungsi ini di panggil jika pendaftaran data pasien berhasil dilakukan
+    */
+    public function setNomerPasien()
+    {
+        //ambil data yang isi kolom nama = pasien dari tabel hitung
+        $getKode = Hitung::where('nama', 'pasien')->firstOrFail();
+        
+        //update kolom nomer yang isi kolom nama = pasien, di tabel hitung 
+        Hitung::where('nama', 'pasien')
+                ->update(['nomer' => $getKode->nomer+1]);
+    }
 
     public function edit($id)
     {
