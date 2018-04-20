@@ -22,7 +22,7 @@ class Hewan extends Model
 		//public $timestamps = false;
 
 		//format waktu atribut created_at
-  	public function getCreatedAtAttribute()
+  		public function getCreatedAtAttribute()
 		{
 		    return \Carbon\Carbon::parse($this->attributes['created_at'])
 		    		->timezone('Asia/Jakarta')

@@ -82,7 +82,7 @@
               	<div class="row">
               		<div class="col-md-12">
 	                	<div class="nav navbar-left">
-                			<div class="panel-title"><strong>{{ $peliharaan->nama }}</strong> - {{ $peliharaan->jenis }}</div>
+                			<div class="panel-title"><small>Nama hewan :</small> <strong>{{ $peliharaan->nama }}</strong> - <small>Kode :</small> {{ $peliharaan->kode }}</div>
 						        </div>
 						        <div class="clearfix"></div>
               		</div>

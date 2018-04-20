@@ -35,7 +35,7 @@
                 <tr class="headings">
                   <th class="column-title">No</th>
                   <th class="column-title">Nama pemilik</th>
-                  <th class="column-title">Kode</th>
+                  <th class="column-title">Kode pemilik</th>
                   <th class="column-title">Tgl daftar</th>
                   <th class="column-title">Gender</th>
                   <th class="column-title">Telepon</th>
@@ -81,6 +81,7 @@
                 <tr class="headings">
                   <th class="column-title">No</th>
                   <th class="column-title">Nama hewan</th>
+                  <th class="column-title">Kode hewan</th>
                   <th class="column-title">Jenis hewan</th>
                   <th class="column-title">Jenis kelamin</th>
                   <th class="column-title">Ras</th>
@@ -95,8 +96,9 @@
                   @if (count($hewan->pasien()->get()) > 0 )
                     @foreach($hewan->pasien()->get() as $pemilik)
                     <tr class="even pointer">
-                      <td class="a-center ">{{ $loop->parent->iteration-$pemilikTerdelete }}</td>
+                      <td class="a-center ">{{ $loop->parent->iteration - $pemilikTerdelete }}</td>
                       <td class=" ">{{ $hewan->nama }}</td>
+                      <td class=" ">{{ $hewan->kode }}</td>
                       <td class=" ">{{ $hewan->jenis }}</td>
                       <td class=" ">{{ $hewan->gender }}</td>
                       <td class=" ">{{ $hewan->ras }}</td>

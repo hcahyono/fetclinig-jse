@@ -22,11 +22,12 @@ class PeliharaanController extends Controller
 		{
 			return auth()->user();
 		}
-		
+
 		public function store(HewanRequest $request, $id)
 		{
 			$hewan = new Hewan;
-			$hewan->pasien_id = $id;
+      $hewan->pasien_id = $id;
+      $hewan->kode      = $this->setKodeHewan($id);
 			$hewan->nama      = $request->namahewan;
       $hewan->jenis     = $request->jenishewan;
       $hewan->gender    = $request->genderhewan;
@@ -37,6 +38,33 @@ class PeliharaanController extends Controller
       $hewan->save();
       return redirect('pasien/'.$id);
 		}
+
+    /*
+    * buat kode hewan gabungan dari kode pasien concatinate dengan jumlah hewan
+    */
+    public function setKodeHewan($id)
+    {
+      $kodePasien = Pasien::select('kode')->where('id', $id)->get();
+      foreach ($kodePasien as $value) {
+        $kode = $value->kode;
+      }
+
+      return $kode.'.'.$this->countKodeHewan($id);
+    }
+
+    /*
+    * hitung jumlah hewan yang dimiliki pasien
+    * tambah jumlah hewan sebagai kode hewan baru
+    */
+    public function countKodeHewan($id)
+    {
+      $data = Hewan::where('pasien_id', $id)->get();
+      foreach ($data as $dataHewan) {
+        $array[] = $dataHewan;
+      }
+
+      return count($array)+1;
+    }
 
 		public function edit($pasien, $hewan)
 		{
