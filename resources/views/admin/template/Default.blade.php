@@ -26,7 +26,8 @@
     <link href="{{ asset('/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
-
+    <!-- bootstrap-datetimepicker -->
+    <link href="{{ asset('/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('/css/custom.min.css') }}" rel="stylesheet">
     <!-- Custom Style -->
@@ -154,7 +155,7 @@
 
         {{-- footer content --}}
         <footer>
-          <div class="pull-right">All right reserved 
+          <div class="pull-right">All right reserved
             &copy;{{ Carbon\Carbon::now('Asia/Jakarta')->format('Y') }} Jose vet clinic </div>
           <div class="clearfix"></div>
         </footer>
@@ -201,17 +202,19 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('/vendor/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="{{ asset('/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- validator -->
     <script src="{{ asset('/vendor/validator/validator.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('/js/custom.min.js') }}"></script>
     <!-- Modif Theme Scripts -->
     <script src="{{ asset('/js/javascript-modif.js') }}"></script>
+    <!-- Date Picker Load-->
+    <script src="{{ asset('/js/date-picker.js') }}"></script>
     <!-- ckEditor-wysiwyg -->
     <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-    <script>
-        //based on id or name
-        CKEDITOR.replace( 'article-ckeditor' );
-    </script>
+    <!-- ckEditor-wysiwyg Load-->
+    <script src="{{ asset('/js/ck-editor.js') }}"></script>
   </body>
 </html>

@@ -72,6 +72,7 @@
 		font-weight: 600;
 		padding: 1px 5px 0px;
 		margin-top: 5px;
+		background-color: #f9f9f9;
 }
 
 .tile-stats .vert-content {
@@ -80,6 +81,7 @@
 		margin-top: 0px;
 		margin-bottom: 10px;
 		padding: 1px 5px 0px;
+		min-height: 21px;
 }
 
 .tile-stats .tile-end {

@@ -27,7 +27,7 @@
 	        <div class="row">
 	        	<div class="col-md-12 col-sm-12 col-xs-12">
 	        		<div class="x_panel">
-			       		<div class="x_content">
+			       	<div class="x_content">
 			            <span class="section">Data pemilik hewan</span>
 			            <div class="item form-group {{ $errors->has('nama') ? 'has-error' : '' }}">
 			              {{Form::label('nama','Nama Lengkap *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
@@ -47,6 +47,31 @@
 			            		@if ($errors->has('gender'))
 													<span class="help-block">{{ $errors->first('gender') }}</span>
 			            		@endif
+			            	</div>
+			            </div>
+			            <div class="item form-group {{ $errors->has('tanggallahir') ? 'has-error' : '' }}">
+			            	{{Form::label('tanggallahir','Tempat / Tanggal Lahir *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
+			              	<div class="col-md-6 col-sm-6 col-xs-12">
+				              	<div class="row">
+				              		<div class="col-md-6 col-xs-12">
+				              			{{Form::text('tempatlahir', '', ['class'=>'form-control col-md-12 col-xs-12', 'placeholder'=>'ex. Yogyakarta','required'=>'required', 'data-validate-length-range'=>3, 'data-validate-words'=>1])}}
+
+					            		@if ($errors->has('tempatlahir'))
+															<span class="help-block">{{ $errors->first('tempatlahir') }}</span>
+					            		@endif
+				              		</div>
+				              		<div class="col-md-6 col-xs-12">
+				              			<div class='input-group date' id='bDatePicker'>
+						            		{{Form::text('tanggallahir', '', ['class'=>'form-control col-md-12 col-xs-12', 'readonly'=>'readonly'])}}
+			                           <span class="input-group-addon">
+			                              <span class="glyphicon glyphicon-calendar"></span>
+			                           </span>
+											</div>
+					            		@if ($errors->has('tanggallahir'))
+															<span class="help-block">{{ $errors->first('tanggallahir') }}</span>
+					            		@endif
+				              		</div>
+				              	</div>
 			            	</div>
 			            </div>
 			            <div class="item form-group {{ $errors->has('telepon') ? 'has-error' : '' }}">
@@ -132,7 +157,7 @@
 			            	</div>
 			            </div>
 			        	</div>
-				      </div>
+				   </div>
 	        	</div>
 	        </div>
 	        <div class="tile-end">

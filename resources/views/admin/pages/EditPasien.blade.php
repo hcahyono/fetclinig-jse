@@ -66,16 +66,29 @@
                     <span class="help-block">{{ $errors->first('gender') }}</span>
                 @endif
               </div>
-	        	</div>
-	        	<div class="col-md-6 col-sm-12 col-xs-12">
-	        		<div class="form-group vert-label {{ $errors->has('telepon') ? 'has-error' : '' }}">
-                {{Form::label('telepon','TELEPON')}}
-                {{Form::tel('telepon', $pasien->telepon, ['class'=>'form-control','placeholder'=>'Enter telepon'])}}
+              <div class="form-group vert-label {{ $errors->has('tempatlahir') ? 'has-error' : '' }}">
+                {{Form::label('tempatlahir','TEMPAT KELAHIRAN')}}
+                {{Form::text('tempatlahir', $pasien->tempat_lahir, ['class'=>'form-control','placeholder'=>'Enter tempat'])}}
 
-                @if ($errors->has('telepon'))
-                    <span class="help-block">{{ $errors->first('telepon') }}</span>
+                @if ($errors->has('tempatlahir'))
+                    <span class="help-block">{{ $errors->first('tempatlahir') }}</span>
                 @endif
               </div>
+              <div class="form-group vert-label {{ $errors->has('tanggallahir') ? 'has-error' : '' }}">
+                {{Form::label('tanggallahir','TANGGAL LAHIR')}}
+                <div class='input-group date' id='bDatePicker'>
+                  {{Form::text('tanggallahir', \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y'), ['class'=>'form-control','placeholder'=>'Enter tanggal lahir', 'required'=>'required'])}}
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+
+                @if ($errors->has('tanggallahir'))
+                    <span class="help-block">{{ $errors->first('tanggallahir') }}</span>
+                @endif
+              </div>
+	        	</div>
+	        	<div class="col-md-6 col-sm-12 col-xs-12">
               <div class="form-group vert-label {{ $errors->has('handphone') ? 'has-error' : '' }}">
                 {{Form::label('handphone','HANDPHONE')}}
                 {{Form::tel('handphone', $pasien->handphone, ['class'=>'form-control','placeholder'=>'Enter handphone', 'required'=>'required'])}}
@@ -84,8 +97,14 @@
                     <span class="help-block">{{ $errors->first('handphone') }}</span>
                 @endif
               </div>
-	        	</div>
-	        	<div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group vert-label {{ $errors->has('telepon') ? 'has-error' : '' }}">
+                {{Form::label('telepon','TELEPON')}}
+                {{Form::tel('telepon', $pasien->telepon, ['class'=>'form-control','placeholder'=>'Enter telepon'])}}
+
+                @if ($errors->has('telepon'))
+                    <span class="help-block">{{ $errors->first('telepon') }}</span>
+                @endif
+              </div>
 	        		<div class="form-group vert-label {{ $errors->has('alamat') ? 'has-error' : '' }}">
                 {{Form::label('alamat','ALAMAT')}}
                 {{Form::textarea('alamat', $pasien->alamat, ['class'=>'form-control','placeholder'=>'Enter alamat..','required'=>'required','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>3])}}
@@ -94,7 +113,7 @@
                     <span class="help-block">{{ $errors->first('alamat') }}</span>
                 @endif
               </div>
-	        	</div>
+            </div>
             {{ csrf_field() }}
           {!! Form::close() !!}
           </div>

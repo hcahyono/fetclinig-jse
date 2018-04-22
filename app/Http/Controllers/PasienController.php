@@ -61,14 +61,16 @@ class PasienController extends Controller
         $user = auth()->user();
 
         $pasien = new Pasien;
-        $pasien->kode       = $this->getKodePasien();
-        $pasien->nama       = $request->nama;
-        $pasien->gender     = $request->gender;
-        $pasien->telepon    = $request->telepon;
-        $pasien->handphone  = $request->handphone;
-        $pasien->alamat     = $request->alamat;
-        $pasien->created_by = $user->name;
-        $pasien->updated_by = $user->name;
+        $pasien->kode           = $this->getKodePasien();
+        $pasien->nama           = $request->nama;
+        $pasien->gender         = $request->gender;
+        $pasien->tempat_lahir   = $request->tempatlahir;
+        $pasien->tanggal_lahir  = Carbon::parse($request->tanggallahir);
+        $pasien->telepon        = $request->telepon;
+        $pasien->handphone      = $request->handphone;
+        $pasien->alamat         = $request->alamat;
+        $pasien->created_by     = $user->name;
+        $pasien->updated_by     = $user->name;
 
         if( $pasien->save() )
         {
@@ -101,7 +103,7 @@ class PasienController extends Controller
     }
 
     /*
-    * Create kode hewan
+    * Create kode hewan first insert
     */
     public function kodeHewan()
     {
@@ -146,12 +148,14 @@ class PasienController extends Controller
     {
         $user = auth()->user();
       	Pasien::find($id)->update([
-      		'nama'        => $request->nama,
-      		'gender'      => $request->gender,
-      		'telepon'     => $request->telepon,
-      		'handphone'   => $request->handphone,
-          'alamat'      => $request->alamat,
-      		'updated_by'  => $user->name
+      		'nama'            => $request->nama,
+          'gender'          => $request->gender,
+          'tempat_lahir'    => $request->tempatlahir,
+      		'tanggal_lahir'   => Carbon::parse($request->tanggallahir),
+      		'telepon'         => $request->telepon,
+      		'handphone'       => $request->handphone,
+          'alamat'          => $request->alamat,
+      		'updated_by'      => $user->name
       	]);
 
       	return redirect('pasien/' . $id);

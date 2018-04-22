@@ -32,18 +32,20 @@
         </div>
         <div class="row">
         	<div class="col-md-6 col-sm-12 col-xs-12">
-        		<div class="vert-label">NAMA PEMILIK</div>
-        		<div class="vert-content">{{ $pasien->nama }}</div>
-						<div class="vert-label">TELEPON</div>
-						<div class="vert-content">{{ $pasien->telepon }}</div>
+	     		<div class="vert-label">NAMA PEMILIK</div>
+	     		<div class="vert-content">{{ $pasien->nama }}</div>
+				<div class="vert-label">KODE</div>
+				<div class="vert-content">{{ $pasien->kode }}</div>
         		<div class="vert-label">GENDER</div>
         		<div class="vert-content">{{ $pasien->gender }}</div>
+        		<div class="vert-label">TEMPAT / TANGGAL LAHIR</div>
+        		<div class="vert-content">{{ $pasien->tempat_lahir .', '. \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y') }}</div>
         	</div>
         	<div class="col-md-6 col-sm-12 col-xs-12">
-						<div class="vert-label">KODE</div>
-						<div class="vert-content">{{ $pasien->kode }}</div>
         		<div class="vert-label">HANDPHONE</div>
         		<div class="vert-content">{{ $pasien->handphone }}</div>
+				<div class="vert-label">TELEPON</div>
+				<div class="vert-content">{{ $pasien->telepon }}</div>
         		<div class="vert-label">ALAMAT</div>
         		<div class="vert-content">{{ $pasien->alamat }}</div>
         	</div>

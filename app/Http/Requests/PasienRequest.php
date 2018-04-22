@@ -27,6 +27,8 @@ class PasienRequest extends FormRequest
         $rules = [
             'nama' => 'required|string|max:255',
             'gender' => 'required|string',
+            'tempatlahir' => 'required|string',
+            'tanggallahir' => 'required|date',
             'telepon' => $telepon,
             'handphone' => 'required|numeric|min:11',
             'alamat' => 'required|string|min:10|max:255',
@@ -39,15 +41,20 @@ class PasienRequest extends FormRequest
         return [
             'nama.required' => 'wajib diisi',
             'gender.required' => 'wajib diisi',
+            'tempatlahir.required' => 'wajib diisi',
+            'tanggallahir.required' => 'wajib diisi',
             'handphone.required' => 'wajib diisi',
             'alamat.required' => 'wajib diisi',
 
             'nama.string' => 'harus berupa karakter huruf',
             'gender.string' => 'harus berupa karakter huruf',
+            'tempatlahir.string' => 'harus berupa karakter huruf',
             'alamat.string' => 'harus berupa karakter huruf',
 
             'handphone.numeric' => 'harus berupa angka',
             'telepon.numeric' => 'harus berupa angka',
+
+            'tanggallahir.date' => 'harus format tanggal yang sesuai',
         ];
     }
 
@@ -56,6 +63,8 @@ class PasienRequest extends FormRequest
         return [
             'nama' => 'Nama pemilik',
             'gender' => 'Gender pemilik',
+            'tanggallahir' => 'Tanggal Lahir',
+            'tempatlahir' => 'Tempat',
             'telepon' => 'Nomor telepon',
             'handphone' => 'Nomor handphone',
         ];

@@ -82,11 +82,11 @@
                   <th class="column-title">No</th>
                   <th class="column-title">Nama hewan</th>
                   <th class="column-title">Kode hewan</th>
+                  <th class="column-title">Nama pemilik</th>
                   <th class="column-title">Jenis hewan</th>
                   <th class="column-title">Jenis kelamin</th>
                   <th class="column-title">Ras</th>
                   <th class="column-title">Warna bulu</th>
-                  <th class="column-title">Nama pemilik</th>
                   <th class="column-title no-link last"><span class="nobr">Action</span></th>
                 </tr>
               </thead>
@@ -99,11 +99,11 @@
                       <td class="a-center ">{{ $loop->parent->iteration - $pemilikTerdelete }}</td>
                       <td class=" ">{{ $hewan->nama }}</td>
                       <td class=" ">{{ $hewan->kode }}</td>
+                      <td class=" ">{{ $pemilik->nama }}</td>
                       <td class=" ">{{ $hewan->jenis }}</td>
                       <td class=" ">{{ $hewan->gender }}</td>
                       <td class=" ">{{ $hewan->ras }}</td>
                       <td class=" ">{{ $hewan->warna }}</td>
-                      <td class=" ">{{ $pemilik->nama }}</td>
                       <td class=" last"><a href="/medis/{{ $pemilik->id }}/{{ $hewan->id }}">View</a></td>
                     </tr>
                     @endforeach

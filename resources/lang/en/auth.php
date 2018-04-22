@@ -13,9 +13,10 @@ return [
     |
     */
 
-    //ganti default pesan error untuk login (login error message) 
+    //ganti default pesan error untuk login (login error message)
     'failed' => 'Informasi yang di input tidak valid, coba ulangi.',
     // 'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Gagal saat mencoba login. Silahkan ulangi setelah :seconds detik.',
+    //'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
