@@ -49,6 +49,28 @@
 			            		@endif
 			            	</div>
 			            </div>
+			            
+			            <div class="item form-group {{ $errors->has('telepon') ? 'has-error' : '' }}">
+			              {{Form::label('telepon','Telepon', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
+			              <div class="col-md-6 col-sm-6 col-xs-12">
+			                {{Form::tel('telepon', '', ['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'ex. 7675xxx', 'data-validate-length-range'=>8.20])}}
+
+			                @if ($errors->has('telepon'))
+													<span class="help-block">{{ $errors->first('telepon') }}</span>
+			            		@endif
+			              </div>
+			            </div>
+			            <div class="item form-group {{ $errors->has('handphone') ? 'has-error' : '' }}">
+			              {{Form::label('handphone','Handphone *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
+			              <div class="col-md-6 col-sm-6 col-xs-12">
+			                {{Form::tel('handphone', '', ['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'ex. 0821xxxxxx', 'data-validate-length-range'=>8.20, 'required'=>'required'])}}
+
+			                @if ($errors->has('handphone'))
+													<span class="help-block">{{ $errors->first('handphone') }}</span>
+			            		@endif
+			              </div>
+			            </div>
+
 			            <div class="item form-group {{ $errors->has('tanggallahir') ? 'has-error' : '' }}">
 			            	{{Form::label('tanggallahir','Tempat / Tanggal Lahir *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
 			              	<div class="col-md-6 col-sm-6 col-xs-12">
@@ -74,26 +96,7 @@
 				              	</div>
 			            	</div>
 			            </div>
-			            <div class="item form-group {{ $errors->has('telepon') ? 'has-error' : '' }}">
-			              {{Form::label('telepon','Telepon', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
-			              <div class="col-md-6 col-sm-6 col-xs-12">
-			                {{Form::tel('telepon', '', ['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'ex. 7675xxx', 'data-validate-length-range'=>8.20])}}
-
-			                @if ($errors->has('telepon'))
-													<span class="help-block">{{ $errors->first('telepon') }}</span>
-			            		@endif
-			              </div>
-			            </div>
-			            <div class="item form-group {{ $errors->has('handphone') ? 'has-error' : '' }}">
-			              {{Form::label('handphone','Handphone *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
-			              <div class="col-md-6 col-sm-6 col-xs-12">
-			                {{Form::tel('handphone', '', ['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'ex. 0821xxxxxx', 'data-validate-length-range'=>8.20, 'required'=>'required'])}}
-
-			                @if ($errors->has('handphone'))
-													<span class="help-block">{{ $errors->first('handphone') }}</span>
-			            		@endif
-			              </div>
-			            </div>
+			            
 			            <div class="item form-group {{ $errors->has('alamat') ? 'has-error' : '' }}">
 			              {{Form::label('alamat','Alamat Lengkap *', ['class'=>'control-label col-md-3 col-sm-3 col-xs-12'])}}
 			              <div class="col-md-6 col-sm-6 col-xs-12">
