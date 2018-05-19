@@ -62,6 +62,6 @@ class ExportController extends Controller
       	]);
 
       	$date = Carbon::now('Asia/Jakarta')->format('d-m-Y');
-  			return $pdf->stream($date.'_'.$pasien->nama.' rekam medis '.$hewan->nama.'_'.$medis->created_at);
+  			return $pdf->stream($date.'_'.$pasien->nama.' rekam medis '.$hewan->nama.' tanggal '.$medis->created_at.'.pdf');
     }
 }

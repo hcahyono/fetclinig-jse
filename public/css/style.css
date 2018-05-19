@@ -67,7 +67,7 @@
     line-height: 1.65857;
 }
 
-.tile-stats .vert-label {
+.tile-stats .vert-label, .x_panel .vert-label {
 		font-size: 12px;
 		font-weight: 600;
 		padding: 1px 5px 0px;
@@ -75,7 +75,7 @@
 		background-color: #f9f9f9;
 }
 
-.tile-stats .vert-content {
+.tile-stats .vert-content, .x_panel .vert-content {
 		font-size: 14px;
 		color: #303e4c;
 		margin-top: 0px;
@@ -88,10 +88,15 @@
 		position: relative;
     z-index: 1;
     border-top: 1px solid #E6E9ED;
-    padding: 6px 5px 0px;
+    padding: 12px 5px 0px;
     font-size: 12px;
     font-weight: 400;
     line-height: 1.65857;
+}
+
+.primary-text {
+	font-size: 14px;
+	line-height: 1.428;
 }
 
 .foot-info {

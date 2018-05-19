@@ -26,7 +26,7 @@ class MedisController extends Controller
 
 		public function now()
     {
-      	return Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s');
+      	return Carbon::now('Asia/Jakarta')->format('d-m-Y H:i');
     }
 
     public function store(Request $request, $id)

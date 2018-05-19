@@ -23,7 +23,7 @@ class PasienController extends Controller
 
     public function now()
     {
-        return Carbon::now('Asia/Jakarta')->format('d/m/Y H:i:s');
+        return Carbon::now('Asia/Jakarta')->format('d-m-Y H:i');
     }
 
     public function index()
@@ -72,10 +72,12 @@ class PasienController extends Controller
         $pasien->created_by     = $user->name;
         $pasien->updated_by     = $user->name;
 
-        if( $pasien->save() )
+        $simpanPasien = $pasien->save();
+        if( $simpanPasien )
         {
+          //$lastIdPasien = $pasien->id;
           $hewan = new Hewan;
-          $hewan->kode      = $this->kodeHewan();
+          $hewan->kode      = $this->kodeHewan($pasien->id);
           $hewan->nama      = $request->namahewan;
           $hewan->jenis     = $request->jenishewan;
           $hewan->gender    = $request->genderhewan;
@@ -92,7 +94,8 @@ class PasienController extends Controller
           */
           $hewan->pasien()->associate($pasien);
 
-          if( $hewan->save() )
+          $simpanHewan = $hewan->save();
+          if( $simpanHewan )
           {
             //update nomer urut untuk kode pasien di tabel hitung
             $this->setNomerPasien();
@@ -105,9 +108,14 @@ class PasienController extends Controller
     /*
     * Create kode hewan first insert
     */
-    public function kodeHewan()
+    public function kodeHewan($idPasien)
     {
-        return $this->getKodePasien().'.1';
+        $kodePasien = Pasien::select('kode')->where('id', $idPasien)->get();
+        foreach ($kodePasien as $value) {
+          $kode = $value->kode;
+        }
+
+        return $kode.".1";
     }
 
     /*
@@ -121,7 +129,7 @@ class PasienController extends Controller
         $getKode = Hitung::where('nama', 'pasien')->firstOrFail();
         $dateNow = date('Ymd');
         $kode = $dateNow.$getKode->nomer;
-        return (int)$kode;
+        return $kode;
     }
 
     /*
@@ -135,7 +143,7 @@ class PasienController extends Controller
 
         //update kolom nomer yang isi kolom nama = pasien, di tabel hitung
         Hitung::where('nama', 'pasien')
-                ->update(['nomer' => $getKode->nomer+1]);
+                ->update(['nomer' => $getKode->nomer++]);
     }
 
     public function edit($id)

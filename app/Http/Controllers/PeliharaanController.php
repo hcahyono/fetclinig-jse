@@ -25,9 +25,10 @@ class PeliharaanController extends Controller
 
 		public function store(HewanRequest $request, $id)
 		{
+      $kodeHewan = $this->setKodeHewan($id);
 			$hewan = new Hewan;
       $hewan->pasien_id = $id;
-      $hewan->kode      = $this->setKodeHewan($id);
+      $hewan->kode      = $kodeHewan;
 			$hewan->nama      = $request->namahewan;
       $hewan->jenis     = $request->jenishewan;
       $hewan->gender    = $request->genderhewan;
@@ -49,7 +50,8 @@ class PeliharaanController extends Controller
         $kode = $value->kode;
       }
 
-      return $kode.'.'.$this->countKodeHewan($id);
+      $kodeHewan = $kode.'.'.$this->countKodeHewan($id);
+      return $kodeHewan;
     }
 
     /*
@@ -59,11 +61,21 @@ class PeliharaanController extends Controller
     public function countKodeHewan($id)
     {
       $data = Hewan::where('pasien_id', $id)->get();
-      foreach ($data as $dataHewan) {
-        $array[] = $dataHewan;
-      }
+      if( $data != NULL OR $data != "" )
+      {
+        $array = array();
+        foreach ($data as $dataHewan) {
+          $array = $dataHewan;
+        }
 
-      return count($array)+1;
+        (int)$jumlahHewan = count($array);
+
+        //dump(++$jumlahHewan);
+        return ++$jumlahHewan;
+      }else
+      {
+        return 1;
+      }
     }
 
 		public function edit($pasien, $hewan)

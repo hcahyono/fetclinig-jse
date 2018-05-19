@@ -38,7 +38,7 @@ class Pasien extends Model
 				// $timezone = $user ? $user->timezone : Config::get('app.timezone');
 		    return \Carbon\Carbon::parse($this->attributes['created_at'])
 		    		->timezone('Asia/Jakarta')
-		      	->format('d, M Y H:i:s A');
+		      	->format('d M Y H:i:s A');
 		}
 
 

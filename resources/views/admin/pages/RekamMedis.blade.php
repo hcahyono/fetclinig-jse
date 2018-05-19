@@ -175,31 +175,43 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="panel-title">Anamnesa</div>
-              <div class="clearfix"></div>
-              <div class="form-group">
-                <textarea id="anamnesa" rows="6" class="form-control" disabled="">{{ $medis->anamnesa }}</textarea>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Anamnesa</h3>
+                </div>
+                <div class="panel-body">
+                  <p class="primary-text">{!! nl2br( e($medis->anamnesa) ) !!}</p>
+                </div>
               </div>
             </div>
             <div class="col-md-12">
-              <div class="panel-title">Diagnosa</div>
-              <div class="clearfix"></div>
-              <div class="form-group">
-                <textarea id="diagnosa" rows="6" class="form-control" disabled="">{{ $medis->diagnosa }}</textarea>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Diagnosa</h3>
+                </div>
+                <div class="panel-body">
+                  <p class="primary-text">{!! nl2br( e($medis->diagnosa) ) !!}</p>
+                </div>
               </div>
             </div>
             <div class="col-md-12">
-              <div class="panel-title">Terapi</div>
-              <div class="clearfix"></div>
-              <div class="form-group">
-                <textarea id="terapi" rows="6" class="form-control" disabled="">{{ $medis->terapi }}</textarea>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Terapi</h3>
+                </div>
+                <div class="panel-body">
+                  <p class="primary-text">{!! nl2br( e($medis->terapi) ) !!}</p>
+                </div>
               </div>
             </div>
             <div class="col-md-12">
-              <div class="panel-title">Keterangan</div>
-              <div class="clearfix"></div>
-              <div class="form-group">
-                <textarea id="keterangan" rows="6" class="form-control" disabled="">{{ $medis->keterangan }}</textarea>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Keterangan</h3>
+                </div>
+                <div class="panel-body">
+                  <p class="primary-text">{!! nl2br( e($medis->keterangan) ) !!}</p>
+                </div>
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ class Medis extends Model
 		{
 		    return \Carbon\Carbon::parse($this->attributes['created_at'])
 		    	->timezone('Asia/Jakarta')
-		      ->format('d, M Y H:i:s A');
+		      ->format('d M Y H:i:s A');
 		}
 
 		//format waktu atribut updated_at

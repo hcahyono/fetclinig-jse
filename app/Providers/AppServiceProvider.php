@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Carbon\Carbon::setlocale('id');
+        \Carbon\Carbon::setLocale(env('LOCALE', 'id'));
         Schema::defaultStringLength(191);
     }
 

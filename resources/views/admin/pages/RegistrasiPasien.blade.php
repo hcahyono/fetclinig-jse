@@ -18,9 +18,7 @@
       	{!! Form::open(['route' => ['pasien.store'], 'class'=>'form-horizontal form-label-left', 'novalidate']) !!}
 	        <div class="tile-name">
 		        <div class="nav navbar-right">
-		        	{{Form::submit('Simpan data', ['class' => 'btn btn-success zoom btn_right'])}}
-		        	<button type="reset" class="btn btn-warning zoom btn_right">Reset</button>
-		        	<button  type="button" class="batal btn btn-second zoom btn_right">Keluar</button>
+		        	Registrasi Pasien Baru Pada Tanggal &nbsp; {{ $now }}
 		        </div>
 	        	<div class="clearfix"></div>
 	        </div>
@@ -164,7 +162,12 @@
 	        	</div>
 	        </div>
 	        <div class="tile-end">
-	        	<div class="nav navbar-left">DIBUAT &nbsp;|&nbsp; {{ $now }}</div>
+	        	<div class="nav navbar-right">
+	        	{{-- DIBUAT &nbsp;|&nbsp; {{ $now }} --}}
+		        	<button  type="button" class="batal btn btn-second zoom btn_right">Keluar</button>
+		        	<button type="reset" class="btn btn-warning zoom btn_right">Reset</button>
+	        		{{Form::submit('Simpan data', ['class' => 'btn btn-success zoom btn_right'])}}
+	        	</div>
 	      		<div class="clearfix"></div>
 	        </div>
 

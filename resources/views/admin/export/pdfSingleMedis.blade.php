@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JOSE CLINIC | Rekam Medis Single</title>
+    <title>Josevetclinic | Rekam Medis</title>
     <style>
       *{
         font-family:  arial, sans-serif;
@@ -52,7 +52,7 @@
   </head>
 
   <body>
-    <p>{{$now}}</p>
+    <p>{{$now}} &nbsp;Oleh - {{$user}}</p>
     <h2>Data Rekam Medis Peliharaan</h2>
 
     <h3>Informasi pemilik hewan</h3>
@@ -101,19 +101,19 @@
       </tr>
       <tr>
         <th>Anamnesa</th>
-        <td>{{$medis->anamnesa}}</td>
+        <td>{!! nl2br( e($medis->anamnesa) ) !!}</td>
       </tr>
       <tr>
         <th>Diagnosa</th>
-        <td>{{$medis->diagnosa}}</td>
+        <td>{!! nl2br( e($medis->diagnosa) ) !!}</td>
       </tr>
       <tr>
         <th>Terapi</th>
-        <td>{{$medis->terapi}}</td>
+        <td>{!! nl2br( e($medis->terapi) ) !!}</td>
       </tr>
       <tr>
         <th>Keterangan</th>
-        <td>{{$medis->keterangan}}</td>
+        <td>{!! nl2br( e($medis->keterangan) ) !!}</td>
       </tr>
       @else
       <tr>

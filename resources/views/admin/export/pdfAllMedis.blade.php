@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Jose vet clinic | Rekam Medis</title>
+    <title>Josevetclinic | Data Rekam Medis</title>
     <style>
       *{
         font-family:  arial, sans-serif;
@@ -53,7 +53,7 @@
   </head>
 
   <body>
-    <p>{{$now}} &nbsp;user - {{$user}}</p>
+    <p>{{$now}} &nbsp;Oleh - {{$user}}</p>
     <h2>Data Rekam Medis Peliharaan</h2>
 
     <h3>Informasi pemilik hewan</h3>
@@ -106,10 +106,10 @@
         @foreach( $hewan->medis()->get() as $medis )
           <tr>
             <td>{{$medis->created_at}}</td>
-            <td>{{$medis->anamnesa}}</td>
-            <td>{{$medis->diagnosa}}</td>
-            <td>{{$medis->terapi}}</td>
-            <td>{{$medis->keterangan}}</td>
+            <td>{!! nl2br( e($medis->anamnesa) ) !!}</td>
+            <td>{!! nl2br( e($medis->diagnosa) ) !!}</td>
+            <td>{!! nl2br( e($medis->terapi) ) !!}</td>
+            <td>{!! nl2br( e($medis->keterangan) ) !!}</td>
           </tr>
         @endforeach
       @else
