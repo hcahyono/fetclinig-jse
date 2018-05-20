@@ -60,21 +60,20 @@ class PeliharaanController extends Controller
     */
     public function countKodeHewan($id)
     {
-      $data = Hewan::where('pasien_id', $id)->get();
-      if( $data != NULL OR $data != "" )
-      {
-        $array = array();
-        foreach ($data as $dataHewan) {
-          $array = $dataHewan;
-        }
-
-        (int)$jumlahHewan = count($array);
-
-        //dump(++$jumlahHewan);
-        return ++$jumlahHewan;
-      }else
+      $data = Hewan::where('pasien_id', $id)->withTrashed()->get();
+      if( $data->isEmpty() )
       {
         return 1;
+      }else
+      {
+        foreach ($data as $dataHewan) {
+          $peliharaan[] = $dataHewan;
+        }
+
+        (int)$jumlahHewan = count($peliharaan);
+        // dump(++$jumlahHewan);
+        // dd();
+        return ++$jumlahHewan;
       }
     }
 
