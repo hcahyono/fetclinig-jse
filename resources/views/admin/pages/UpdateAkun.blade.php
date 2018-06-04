@@ -35,7 +35,7 @@
                       <h4>Nama</h4>
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                          {{Form::text('name', $akun->name, ['id'=>'inputSuccess1', 'class'=>'form-control', 'placeholder'=>'Nama'])}}
+                          {{Form::text('name', $akun->name, ['id'=>'inputSuccess1', 'class'=>'form-control', 'placeholder'=>'ex. Amir'])}}
                           <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
 
                           @if ($errors->has('name'))
@@ -47,7 +47,7 @@
                       <h4>Nomor handphone</h4>
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
-                          {{Form::tel('phone', $akun->phone, ['id'=>'inputSuccess2', 'class'=>'form-control', 'placeholder'=>'Hadphone'])}}
+                          {{Form::tel('phone', $akun->phone, ['id'=>'inputSuccess2', 'class'=>'form-control', 'placeholder'=>'ex. 0821xxxxxx'])}}
                           <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
 
                           @if ($errors->has('phone'))

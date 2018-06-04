@@ -18,6 +18,10 @@
         border-top: 1px solid #dddddd;
       }
 
+      .text-capitalize {
+        text-transform: capitalize;
+      }
+
       table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -53,7 +57,7 @@
   </head>
 
   <body>
-    <p>{{$now}} &nbsp;Oleh - {{$user}}</p>
+    <p>{{$now}} &nbsp;Dicetak oleh - {{$user}}</p>
     <h2>Data Rekam Medis Peliharaan</h2>
 
     <h3>Informasi pemilik hewan</h3>
@@ -65,11 +69,11 @@
         <th>Alamat</th>
       </tr>
       <tr>
-        <td>{{$pasien->nama}}</td>
-        <td>{{$pasien->gender}}</td>
-        <td>{{$pasien->telepon}}</td>
-        <td>{{$pasien->handphone}}</td>
-        <td>{{$pasien->alamat}}</td>
+        <td class="text-capitalize">{{ ($pasien->nama != "" ? $pasien->nama : "--") }}</td>
+        <td class="text-capitalize">{{ ($pasien->gender != "" ? $pasien->gender : "--") }}</td>
+        <td>{{ ($pasien->handphone != "" ? $pasien->handphone : "--") }}</td>
+        <td>{{ ($pasien->telepon != "" ? $pasien->telepon : "--") }}</td>
+        <td>{{ ($pasien->alamat != "" ? $pasien->alamat : "--") }}</td>
       </tr>
     </table>
 
@@ -83,11 +87,11 @@
         <th>Warna bulu</th>
       </tr>
       <tr>
-        <td>{{$hewan->nama}}</td>
-        <td>{{$hewan->jenis}}</td>
-        <td>{{$hewan->gender}}</td>
-        <td>{{$hewan->ras}}</td>
-        <td>{{$hewan->warna}}</td>
+        <td class="text-capitalize">{{ ($hewan->nama != "" ? $hewan->nama : "--") }}</td>
+        <td class="text-capitalize">{{ ($hewan->jenis != "" ? $hewan->jenis : "--") }}</td>
+        <td class="text-capitalize">{{ ($hewan->gender != "" ? $hewan->gender : "--") }}</td>
+        <td class="text-capitalize">{{ ($hewan->ras != "" ? $hewan->ras : "--") }}</td>
+        <td class="text-capitalize">{{ ($hewan->warna != "" ? $hewan->warna : "--") }}</td>
       </tr>
     </table>
 
@@ -105,11 +109,11 @@
       @if( count($hewan->medis()->get()) > 0 )
         @foreach( $hewan->medis()->get() as $medis )
           <tr>
-            <td>{{$medis->created_at}}</td>
-            <td>{!! nl2br( e($medis->anamnesa) ) !!}</td>
-            <td>{!! nl2br( e($medis->diagnosa) ) !!}</td>
-            <td>{!! nl2br( e($medis->terapi) ) !!}</td>
-            <td>{!! nl2br( e($medis->keterangan) ) !!}</td>
+            <td>{{ ($medis->created_at != "" ? $medis->created_at : "--") }}</td>
+            <td>{!! nl2br( e( ($medis->anamnesa != "" ? $medis->anamnesa : "--") ) ) !!}</td>
+            <td>{!! nl2br( e( ($medis->diagnosa != "" ? $medis->diagnosa : "--") ) ) !!}</td>
+            <td>{!! nl2br( e( ($medis->terapi != "" ? $medis->terapi : "--") ) ) !!}</td>
+            <td>{!! nl2br( e( ($medis->keterangan != "" ? $medis->keterangan : "--") ) ) !!}</td>
           </tr>
         @endforeach
       @else

@@ -43,7 +43,7 @@ class ExportController extends Controller
       	]);
 
       	$date = Carbon::now('Asia/Jakarta')->format('d-m-Y');
-  			return $pdf->stream($date.'_'.$pasien->nama.' rekam medis '.$hewan->nama.'.pdf');
+  			return $pdf->stream($pasien->nama.'_'.$hewan->nama.'_'.$date.'.pdf');
     }
 
     public function pdfSingle($pasien, $hewan, $medis)
@@ -62,6 +62,6 @@ class ExportController extends Controller
       	]);
 
       	$date = Carbon::now('Asia/Jakarta')->format('d-m-Y');
-  			return $pdf->stream($date.'_'.$pasien->nama.' rekam medis '.$hewan->nama.' tanggal '.$medis->created_at.'.pdf');
+  			return $pdf->stream($pasien->nama.'_'.$hewan->nama.'_'.$medis->created_at.'_'.$date.'.pdf');
     }
 }

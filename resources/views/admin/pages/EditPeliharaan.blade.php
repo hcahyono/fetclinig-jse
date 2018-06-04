@@ -13,7 +13,7 @@
       	<div class="right_align">
           <button class="btn btn-danger zoom btn_right pull-left"
               onclick="event.preventDefault();
-              var q = confirm('Data akan dihapus!!, lanjutkan ?');
+              var q = confirm('Data akan dihapus dari sistem !!, tetap lanjutkan ?');
               if (q){
                 document.getElementById('peliharaan-delete').submit();
               }
@@ -52,7 +52,7 @@
             <div class="col-md-6 col-sm-12 col-xs-12">
               <div class="form-group vert-label {{ $errors->has('namahewan') ? 'has-error' : '' }}">
                 {{Form::label('namahewan','NAMA HEWAN')}}
-                {{Form::text('namahewan', $peliharaan->nama, ['class'=>'form-control', 'placeholder'=>'Nama hewan peliharaan','required'=>'required'])}}
+                {{Form::text('namahewan', $peliharaan->nama, ['class'=>'form-control', 'placeholder'=>'ex. Snowy','required'=>'required'])}}
 
                 @if ($errors->has('namahewan'))
                     <span class="help-block">{{ $errors->first('namahewan') }}</span>
@@ -60,7 +60,7 @@
               </div>
               <div class="form-group vert-label {{ $errors->has('jenishewan') ? 'has-error' : '' }}">
                 {{Form::label('jenishewan','JENIS HEWAN')}}
-                {{Form::text('jenishewan', $peliharaan->jenis, ['class'=>'form-control', 'placeholder'=>'Jenis hewan','required'=>'required'])}}
+                {{Form::text('jenishewan', $peliharaan->jenis, ['class'=>'form-control', 'placeholder'=>'ex. Kucing','required'=>'required'])}}
 
                 @if ($errors->has('jenishewan'))
                     <span class="help-block">{{ $errors->first('jenishewan') }}</span>
@@ -78,7 +78,7 @@
             <div class="col-md-6 col-sm-12 col-xs-12">
               <div class="form-group vert-label {{ $errors->has('rashewan') ? 'has-error' : '' }}">
                 {{Form::label('rashewan','RAS HEWAN')}}
-                {{Form::text('rashewan', $peliharaan->ras, ['class'=>'form-control', 'placeholder'=>'Ras hewan'])}}
+                {{Form::text('rashewan', $peliharaan->ras, ['class'=>'form-control', 'placeholder'=>'ex. Pomerania'])}}
 
                 @if ($errors->has('rashewan'))
                     <span class="help-block">{{ $errors->first('rashewan') }}</span>
@@ -86,7 +86,7 @@
               </div>
               <div class="form-group vert-label {{ $errors->has('warnabulu') ? 'has-error' : '' }}">
                 {{Form::label('warnabulu','WARNA BULU')}}
-                {{Form::text('warnabulu', $peliharaan->warna, ['class'=>'form-control', 'placeholder'=>'Warna bulu'])}}
+                {{Form::text('warnabulu', $peliharaan->warna, ['class'=>'form-control', 'placeholder'=>'ex. Putih'])}}
 
                 @if ($errors->has('warnabulu'))
                     <span class="help-block">{{ $errors->first('warnabulu') }}</span>

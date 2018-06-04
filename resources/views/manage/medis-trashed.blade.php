@@ -6,25 +6,27 @@
     <thead>
       <tr>
         <th>No</th>
+        <th>Nama hewan</th>
         <th>Anamnesa</th>
         <th>Diagnosa</th>
-        <th>Terapi</th>
-        <th>Keterangan</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
     	@foreach($medises as $medis)
-      <tr>
-        <td>{{$loop->iteration}}</td>
-        <td>{{ str_limit($medis->anamnesa, $limit = 16, $end = '...')}}</td>
-        <td>{{ str_limit($medis->diagnosa, $limit = 16, $end = '...')}}</td>
-        <td>{{ str_limit($medis->terapi, $limit = 16, $end = '...')}}</td>
-        <td>{{ str_limit($medis->keterangan, $limit = 16, $end = '...')}}</td>
-        <td>
-        	<a href="{{route('kelola.medis',[$medis->id])}}" class="btn btn-link btn-sm">View</a>
-        </td>
-      </tr>
+        @if (count($medis->hewan()->withTrashed()->get()) > 0 )
+          @foreach($medis->hewan()->withTrashed()->get() as $hewan)
+          <tr>
+            <td>{{$loop->parent->iteration}}</td>
+            <td>{{ ($hewan->nama != "" ? $hewan->nama : "-" ) }}</td>
+            <td>{{ str_limit( ($medis->anamnesa != "" ? $medis->anamnesa : "-" ), $limit = 16, $end = '...')}}</td>
+            <td>{{ str_limit( ($medis->diagnosa != "" ? $medis->diagnosa : "-" ), $limit = 16, $end = '...')}}</td>
+            <td>
+            	<a href="{{route('kelola.medis',[$medis->id])}}" class="btn btn-link btn-sm">View</a>
+            </td>
+          </tr>
+          @endforeach
+        @endif
       @endforeach
     </tbody>
   </table>

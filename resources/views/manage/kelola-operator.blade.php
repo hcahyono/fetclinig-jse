@@ -3,8 +3,8 @@
 @section('contents')
 	<h2>Operator</h2>
     <ul class="list-group">
-      <li class="list-group-item">Nama : {{$operator->name}}</li>
-      <li class="list-group-item">Email : {{$operator->email}}</li>
+      <li class="list-group-item">Nama : {{($operator->name != "" ? $operator->name : "-" )}}</li>
+      <li class="list-group-item">Email : {{($operator->email != "" ? $operator->email : "-" )}}</li>
       <li class="list-group-item">Akun status : {{$status}}
         <form method="POST" action="{{route('update.operator', [$operator->id])}}" >
           @csrf
@@ -16,8 +16,8 @@
           @endif
         </form>
       </li>
-      <li class="list-group-item">Handphone : {{$operator->phone}}</li>
-      <li class="list-group-item">Gender : {{$operator->gender}}</li>
+      <li class="list-group-item">Handphone : {{($operator->phone != "" ? $operator->phone : "-" )}}</li>
+      <li class="list-group-item">Gender : {{($operator->gender != "" ? $operator->gender : "-" )}}</li>
       <li class="list-group-item">Password 
         <form method="POST" action="{{route('reset.operator', [$operator->id])}}" >
           @csrf

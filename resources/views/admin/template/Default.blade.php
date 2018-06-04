@@ -49,7 +49,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="/images/user.png" alt="..." class="img-circle profile_img">
+                <img src="/images/user.png" alt="user-avatar" class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Hallo,</span>
@@ -78,6 +78,11 @@
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/pasien/registrasi">Registrasi pasien baru</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bell"></i> Notifikasi <span class="badge">@include('admin.pages.NotifUltah')</span> <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('ultah.show')}}">Ulang Tahun <span class="badge">@include('admin.pages.NotifUltah')</span></a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-book"></i> Bantuan <span class="fa fa-chevron-down"></span></a>

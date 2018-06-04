@@ -36,10 +36,9 @@
                   <th class="column-title">No</th>
                   <th class="column-title">Nama pemilik</th>
                   <th class="column-title">Kode pemilik</th>
-                  <th class="column-title">Tgl daftar</th>
                   <th class="column-title">Gender</th>
-                  <th class="column-title">Telepon</th>
                   <th class="column-title">Handphone</th>
+                  <th class="column-title">Tanggal daftar</th>
                   <th class="column-title no-link last"><span class="nobr">Action</span></th>
                 </tr>
               </thead>
@@ -48,12 +47,11 @@
                 @foreach($pasiens as $pasien)
                 <tr class="even pointer">
                   <td class="a-center ">{{ $loop->iteration }}</td>
-                  <td class=" ">{{ $pasien->nama }}</td>
-                  <td class=" ">{{ $pasien->kode }}</td>
-                  <td class=" ">{{ $pasien->created_at }}</td>
-                  <td class=" ">{{ $pasien->gender }}</td>
-                  <td class=" ">{{ $pasien->telepon }}</td>
-                  <td class="a-right a-right ">{{ $pasien->handphone }}</td>
+                  <td class="text-capitalize">{{ ($pasien->nama != "" ? $pasien->nama : "--") }}</td>
+                  <td class=" ">{{ ($pasien->kode != "" ? $pasien->kode : "--") }}</td>
+                  <td class="text-capitalize">{{ ($pasien->gender != "" ? $pasien->gender : "--") }}</td>
+                  <td class="a-right">{{ ($pasien->handphone != "" ? $pasien->handphone : "--") }}</td>
+                  <td class=" ">{{ ($pasien->created_at != "" ? $pasien->created_at : "--") }}</td>
                   <td class=" last"><a href="/pasien/{{ $pasien->id }}">View</a></td>
                 </tr>
                 @endforeach
@@ -85,8 +83,6 @@
                   <th class="column-title">Nama pemilik</th>
                   <th class="column-title">Jenis hewan</th>
                   <th class="column-title">Jenis kelamin</th>
-                  <th class="column-title">Ras</th>
-                  <th class="column-title">Warna bulu</th>
                   <th class="column-title no-link last"><span class="nobr">Action</span></th>
                 </tr>
               </thead>
@@ -97,13 +93,11 @@
                     @foreach($hewan->pasien()->get() as $pemilik)
                     <tr class="even pointer">
                       <td class="a-center ">{{ $loop->parent->iteration - $pemilikTerdelete }}</td>
-                      <td class=" ">{{ $hewan->nama }}</td>
-                      <td class=" ">{{ $hewan->kode }}</td>
-                      <td class=" ">{{ $pemilik->nama }}</td>
-                      <td class=" ">{{ $hewan->jenis }}</td>
-                      <td class=" ">{{ $hewan->gender }}</td>
-                      <td class=" ">{{ $hewan->ras }}</td>
-                      <td class=" ">{{ $hewan->warna }}</td>
+                      <td class="text-capitalize">{{ ($hewan->nama != "" ? $hewan->nama : "--") }}</td>
+                      <td class=" ">{{ ($hewan->kode != "" ? $hewan->kode : "--") }}</td>
+                      <td class="text-capitalize">{{ ($pemilik->nama != "" ? $pemilik->nama : "--") }}</td>
+                      <td class="text-capitalize">{{ ($hewan->jenis != "" ? $hewan->jenis : "--") }}</td>
+                      <td class="text-capitalize">{{ ($hewan->gender != "" ? $hewan->gender : "--") }}</td>
                       <td class=" last"><a href="/medis/{{ $pemilik->id }}/{{ $hewan->id }}">View</a></td>
                     </tr>
                     @endforeach

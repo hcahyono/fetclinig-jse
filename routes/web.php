@@ -121,3 +121,8 @@ Route::prefix('panduan')->group(function() {
 //Export PDF
 Route::get('/pdf-all/{pasien}/{hewan}', 'ExportController@pdfAll');
 Route::get('/pdf/{pasien}/{hewan}/{medis}', 'ExportController@pdfSingle');
+
+//Ulang Tahun
+Route::prefix('ulang-tahun')->group(function() {
+	Route::get('/', 'UltahController@showUltah')->name('ultah.show');
+});

@@ -31,7 +31,7 @@
           <div class="nav navbar-right">
             <button class="btn btn-danger zoom btn_right pull-left" 
               onclick="event.preventDefault();
-              var q = confirm('Data akan dihapus!!, lanjutkan ?');
+              var q = confirm('Data akan dihapus dari sistem !!, tetap lanjutkan ?');
               if (q){
                 document.getElementById('medis-delete').submit();  
               }
@@ -60,7 +60,7 @@
                       <div class="vert-label">NAMA PEMILIK</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $pasien->nama }}</div>
+                      <div class="vert-content text-capitalize">{{ ($pasien->nama != "" ? $pasien->nama : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                       <div class="vert-label">KONTAK</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">tlp.{{ $pasien->telepon }} <br> hp.{{ $pasien->handphone }}</div>
+                      <div class="vert-content text-capitalize">hp.{{ ($pasien->handphone != "" ? $pasien->handphone : "--") }} <br> tlp.{{ ($pasien->telepon != "" ? $pasien->telepon : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@
                       <div class="vert-label">GENDER</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $pasien->gender }}</div>
+                      <div class="vert-content text-capitalize">{{ ($pasien->gender != "" ? $pasien->gender : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@
                       <div class="vert-label">ALAMAT</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $pasien->alamat }}</div>
+                      <div class="vert-content">{{ ($pasien->alamat != "" ? $pasien->alamat : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                       <div class="vert-label">NAMA HEWAN</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $peliharaan->nama }}</div>
+                      <div class="vert-content text-capitalize">{{ ($peliharaan->nama != "" ? $peliharaan->nama : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@
                       <div class="vert-label">JENIS HEWAN</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $peliharaan->jenis }}</div>
+                      <div class="vert-content text-capitalize">{{ ($peliharaan->jenis != "" ? $peliharaan->jenis : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@
                       <div class="vert-label">JENIS KELAMIN</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $peliharaan->gender }}</div>
+                      <div class="vert-content text-capitalize">{{ ($peliharaan->gender != "" ? $peliharaan->gender : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -153,7 +153,7 @@
                       <div class="vert-label">RAS HEWAN</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $peliharaan->ras }}</div>
+                      <div class="vert-content text-capitalize">{{ ($peliharaan->ras != "" ? $peliharaan->ras : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -163,7 +163,7 @@
                       <div class="vert-label">WARNA BULU</div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                      <div class="vert-content">{{ $peliharaan->warna }}</div>
+                      <div class="vert-content text-capitalize">{{ ($peliharaan->warna != "" ? $peliharaan->warna : "--") }}</div>
                     </div>
                   </div>
                 </div>
@@ -180,7 +180,7 @@
                   <h3 class="panel-title">Anamnesa</h3>
                 </div>
                 <div class="panel-body">
-                  <p class="primary-text">{!! nl2br( e($medis->anamnesa) ) !!}</p>
+                  <p class="primary-text">{!! nl2br( e( ($medis->anamnesa != "" ? $medis->anamnesa : "--") ) ) !!}</p>
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@
                   <h3 class="panel-title">Diagnosa</h3>
                 </div>
                 <div class="panel-body">
-                  <p class="primary-text">{!! nl2br( e($medis->diagnosa) ) !!}</p>
+                  <p class="primary-text">{!! nl2br( e( ($medis->diagnosa != "" ? $medis->diagnosa : "--") ) ) !!}</p>
                 </div>
               </div>
             </div>
@@ -200,7 +200,7 @@
                   <h3 class="panel-title">Terapi</h3>
                 </div>
                 <div class="panel-body">
-                  <p class="primary-text">{!! nl2br( e($medis->terapi) ) !!}</p>
+                  <p class="primary-text">{!! nl2br( e( ($medis->terapi != "" ? $medis->terapi : "--") ) ) !!}</p>
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@
                   <h3 class="panel-title">Keterangan</h3>
                 </div>
                 <div class="panel-body">
-                  <p class="primary-text">{!! nl2br( e($medis->keterangan) ) !!}</p>
+                  <p class="primary-text">{!! nl2br( e( ($medis->keterangan != "" ? $medis->keterangan : "--") ) ) !!}</p>
                 </div>
               </div>
             </div>
@@ -242,7 +242,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
-                <h5 class="modal-title" id="myModalLabel">{{$now}} EDIT REKAM MEDIS</h5>
+                <h5 class="modal-title" id="myModalLabel">{{$now}} <span class="text-uppercase">Edit rekam medis</span></h5>
               </div>
               <div class="modal-body">
                 <div class="x_panel">
@@ -251,23 +251,23 @@
                     <span class="section">Data rekam medis</span>
                     <div class="row">
                       <div class="rekam-medis col-md-12 col-xs-12">
-                        {{Form::label('anamnesa','ANAMNESA')}}
-                        {{Form::textarea('anamnesa', $medis->anamnesa, ['class'=>'form-control','placeholder'=>'Enter anamnesa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
+                        {{Form::label('anamnesa','*ANAMNESA')}}
+                        {{Form::textarea('anamnesa', $medis->anamnesa, ['class'=>'form-control','placeholder'=>'Input anamnesa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6,'required'=>'required'])}}
                       </div>
 
                       <div class="rekam-medis col-md-12 col-xs-12">
                         {{Form::label('diagnosa','DIAGNOSA')}}
-                        {{Form::textarea('diagnosa', $medis->diagnosa, ['class'=>'form-control','placeholder'=>'Enter diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
+                        {{Form::textarea('diagnosa', $medis->diagnosa, ['class'=>'form-control','placeholder'=>'Input diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
                       </div>
 
                       <div class="rekam-medis col-md-12 col-xs-12">
                         {{Form::label('terapi','TERAPI')}}
-                        {{Form::textarea('terapi', $medis->terapi, ['class'=>'form-control','placeholder'=>'Enter diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
+                        {{Form::textarea('terapi', $medis->terapi, ['class'=>'form-control','placeholder'=>'Input diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
                       </div>
 
                       <div class="rekam-medis col-md-12 col-xs-12">
                         {{Form::label('keterangan','KETERANGAN')}}
-                        {{Form::textarea('keterangan', $medis->keterangan, ['class'=>'form-control','placeholder'=>'Enter diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
+                        {{Form::textarea('keterangan', $medis->keterangan, ['class'=>'form-control','placeholder'=>'Input diagnosa..','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>6])}}
                       </div>
                     </div>
 

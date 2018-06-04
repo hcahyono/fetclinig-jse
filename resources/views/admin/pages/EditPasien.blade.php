@@ -13,7 +13,7 @@
       	<div class="right_align">
 	        <button class="btn btn-danger zoom btn_right pull-left"
               onclick="event.preventDefault();
-              var q = confirm('Data akan dihapus!!, lanjutkan ?');
+              var q = confirm('Data akan dihapus dari sistem !!, tetap lanjutkan ?');
               if (q){
                 document.getElementById('pasien-delete').submit();
               }
@@ -52,7 +52,7 @@
 	        	<div class="col-md-6 col-sm-12 col-xs-12">
 	        		<div class="form-group vert-label {{ $errors->has('nama') ? 'has-error' : '' }}">
                 {{Form::label('nama','NAMA')}}
-                {{Form::text('nama', $pasien->nama, ['class'=>'form-control', 'placeholder'=>'Nama pasien','required'=>'required'])}}
+                {{Form::text('nama', $pasien->nama, ['class'=>'form-control', 'placeholder'=>'ex. Joni','required'=>'required'])}}
 
                 @if ($errors->has('nama'))
                     <span class="help-block">{{ $errors->first('nama') }}</span>
@@ -68,7 +68,7 @@
               </div>
               <div class="form-group vert-label {{ $errors->has('tempatlahir') ? 'has-error' : '' }}">
                 {{Form::label('tempatlahir','TEMPAT KELAHIRAN')}}
-                {{Form::text('tempatlahir', $pasien->tempat_lahir, ['class'=>'form-control','placeholder'=>'Enter tempat'])}}
+                {{Form::text('tempatlahir', $pasien->tempat_lahir, ['class'=>'form-control','placeholder'=>'ex. Yogyakarta'])}}
 
                 @if ($errors->has('tempatlahir'))
                     <span class="help-block">{{ $errors->first('tempatlahir') }}</span>
@@ -77,7 +77,7 @@
               <div class="form-group vert-label {{ $errors->has('tanggallahir') ? 'has-error' : '' }}">
                 {{Form::label('tanggallahir','TANGGAL LAHIR')}}
                 <div class='input-group date' id='bDatePicker'>
-                  {{Form::text('tanggallahir', \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y'), ['class'=>'form-control','placeholder'=>'Enter tanggal lahir', 'required'=>'required'])}}
+                  {{Form::text('tanggallahir', \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y'), ['class'=>'form-control','placeholder'=>'ex. 20-10-2010', 'required'=>'required'])}}
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -91,7 +91,7 @@
 	        	<div class="col-md-6 col-sm-12 col-xs-12">
               <div class="form-group vert-label {{ $errors->has('handphone') ? 'has-error' : '' }}">
                 {{Form::label('handphone','HANDPHONE')}}
-                {{Form::tel('handphone', $pasien->handphone, ['class'=>'form-control','placeholder'=>'Enter handphone', 'required'=>'required'])}}
+                {{Form::tel('handphone', $pasien->handphone, ['class'=>'form-control','placeholder'=>'ex. 0821xxxxxx', 'required'=>'required'])}}
 
                 @if ($errors->has('handphone'))
                     <span class="help-block">{{ $errors->first('handphone') }}</span>
@@ -99,7 +99,7 @@
               </div>
               <div class="form-group vert-label {{ $errors->has('telepon') ? 'has-error' : '' }}">
                 {{Form::label('telepon','TELEPON')}}
-                {{Form::tel('telepon', $pasien->telepon, ['class'=>'form-control','placeholder'=>'Enter telepon'])}}
+                {{Form::tel('telepon', $pasien->telepon, ['class'=>'form-control','placeholder'=>'ex. 7675xxx'])}}
 
                 @if ($errors->has('telepon'))
                     <span class="help-block">{{ $errors->first('telepon') }}</span>
@@ -107,7 +107,7 @@
               </div>
 	        		<div class="form-group vert-label {{ $errors->has('alamat') ? 'has-error' : '' }}">
                 {{Form::label('alamat','ALAMAT')}}
-                {{Form::textarea('alamat', $pasien->alamat, ['class'=>'form-control','placeholder'=>'Enter alamat..','required'=>'required','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>3])}}
+                {{Form::textarea('alamat', $pasien->alamat, ['class'=>'form-control','placeholder'=>'ex. Jln. mt. haryono no. 30, Rt. 17 Rw. 8, Kelurahan Wahid hasyim, Kecamatan Prambanan, Kabupaten Sleman, Provinsi Yogyakarta, Pos 55281','required'=>'required','data-validate-length-range'=>6,'data-validate-word'=>4,'rows'=>3])}}
 
                 @if ($errors->has('alamat'))
                     <span class="help-block">{{ $errors->first('alamat') }}</span>

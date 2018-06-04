@@ -18,22 +18,22 @@
             <tbody>
               @foreach($hewan->pasien()->withTrashed()->get() as $pemilik)
               <tr>
-                <td>{{$pemilik->nama}}</td>
-                <td>{{$pemilik->kode}}</td>
-                <td>{{$pemilik->gender}}</td>
-                <td>{{$pemilik->handphone}}</td>
-                <td>{{$pemilik->telepon}}</td>
-                <td>{{$pemilik->alamat}}</td>
+                <td><strong>{{($pemilik->nama != "" ? $pemilik->nama : "-" )}}</strong></td>
+                <td>{{($pemilik->kode != "" ? $pemilik->kode : "-" )}}</td>
+                <td>{{($pemilik->gender != "" ? $pemilik->gender : "-" )}}</td>
+                <td>{{($pemilik->handphone != "" ? $pemilik->handphone : "-" )}}</td>
+                <td>{{($pemilik->telepon != "" ? $pemilik->telepon : "-" )}}</td>
+                <td>{{($pemilik->alamat != "" ? $pemilik->alamat : "-" )}}</td>
               </tr>
               @endforeach
             </tbody>
           </table>
       </li>
-      <li class="list-group-item">Nama hewan : {{$hewan->nama}}</li>
-      <li class="list-group-item">Jenis hewan : {{$hewan->jenis}}</li>
-      <li class="list-group-item">Jenis kelamin : {{$hewan->gender}}</li>
-      <li class="list-group-item">Ras : {{$hewan->ras}}</li>
-      <li class="list-group-item">Warna bulu : {{$hewan->warna}}</li>
+      <li class="list-group-item">Nama hewan : <strong>{{($hewan->nama != "" ? $hewan->nama : "-" )}}</strong></li>
+      <li class="list-group-item">Jenis hewan : <strong>{{($hewan->jenis != "" ? $hewan->jenis : "-" )}}</strong></li>
+      <li class="list-group-item">Jenis kelamin : <strong>{{($hewan->gender != "" ? $hewan->gender : "-" )}}</strong></li>
+      <li class="list-group-item">Ras : <strong>{{($hewan->ras != "" ? $hewan->ras : "-" )}}</strong></li>
+      <li class="list-group-item">Warna bulu : <strong>{{($hewan->warna != "" ? $hewan->warna : "-" )}}</strong></li>
       <li class="list-group-item">Aksi :  
         <form method="POST" action="{{route('action.hewan',[$hewan->id])}}" >
           @csrf

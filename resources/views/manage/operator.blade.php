@@ -17,10 +17,10 @@
     	@foreach($users as $user)
       <tr>
         <td>{{$loop->iteration}}</td>
-        <td>{{$user->name}}</td>
-        <td>{{$user->email}}</td>
-        <td>{{$user->gender}}</td>
-        <td>{{$user->phone}}</td>
+        <td>{{($user->name != "" ? $user->name : "-" )}}</td>
+        <td>{{($user->email != "" ? $user->email : "-" )}}</td>
+        <td>{{($user->gender != "" ? $user->gender : "-" )}}</td>
+        <td>{{($user->phone != "" ? $user->phone : "-" )}}</td>
         <td>
         	<a href="{{route('kelola.operator',[$user->id])}}" class="btn btn-link btn-sm">Kelola</a>
         </td>

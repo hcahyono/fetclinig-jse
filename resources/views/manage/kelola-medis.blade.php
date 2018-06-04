@@ -17,20 +17,20 @@
             <tbody>
               @foreach($medis->hewan()->withTrashed()->get() as $hewan)
               <tr>
-                <td>{{$hewan->nama}}</td>
-                <td>{{$hewan->jenis}}</td>
-                <td>{{$hewan->gender}}</td>
-                <td>{{$hewan->ras}}</td>
-                <td>{{$hewan->warna}}</td>
+                <td><strong>{{($hewan->nama != "" ? $hewan->nama : "-" )}}</strong></td>
+                <td>{{($hewan->jenis != "" ? $hewan->jenis : "-" )}}</td>
+                <td>{{($hewan->gender != "" ? $hewan->gender : "-" )}}</td>
+                <td>{{($hewan->ras != "" ? $hewan->ras : "-" )}}</td>
+                <td>{{($hewan->warna != "" ? $hewan->warna : "-" )}}</td>
               </tr>
               @endforeach
             </tbody>
           </table>
       </li>
-      <li class="list-group-item">Anamnesa : <br>{{$medis->anamnesa}}</li>
-      <li class="list-group-item">Diagnosa : <br>{{$medis->diagnosa}}</li>
-      <li class="list-group-item">Terapi : <br>{{$medis->terapi}}</li>
-      <li class="list-group-item">Keterangan : <br>{{$medis->keterangan}}</li>
+      <li class="list-group-item">Anamnesa : <strong>{{($medis->anamnesa != "" ? $medis->anamnesa : "-" )}}</strong></li>
+      <li class="list-group-item">Diagnosa : <strong>{{($medis->diagnosa != "" ? $medis->diagnosa : "-" )}}</strong></li>
+      <li class="list-group-item">Terapi : <strong>{{($medis->terapi != "" ? $medis->terapi : "-" )}}</strong></li>
+      <li class="list-group-item">Keterangan : <strong>{{($medis->keterangan != "" ? $medis->keterangan : "-" )}}</strong></li>
       <li class="list-group-item">Aksi :  
         <form method="POST" action="{{route('action.medis',[$medis->id])}}" >
           @csrf

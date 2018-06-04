@@ -4,6 +4,10 @@
 		overflow: hidden !important;
 }
 
+.thumbnail {
+	height: auto;
+}
+
 .tile-stats.card_def {
 	  padding: 10px 17px;
 	  border: none;

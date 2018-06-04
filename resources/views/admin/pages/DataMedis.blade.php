@@ -32,21 +32,21 @@
 		        <div class="row">
 		        	<div class="col-md-6 col-sm-12 col-xs-12">
 		        		<div class="vert-label">NAMA PEMILIK</div>
-		        		<div class="vert-content">{{ $pasien->nama }}</div>
+		        		<div class="vert-content text-capitalize">{{ ($pasien->nama != "" ? $pasien->nama : "--") }}</div>
 								<div class="vert-label">KODE</div>
-								<div class="vert-content">{{ $pasien->kode }}</div>
+								<div class="vert-content">{{ ($pasien->kode != "" ? $pasien->kode : "--") }}</div>
                 <div class="vert-label">GENDER</div>
-                <div class="vert-content">{{ $pasien->gender }}</div>
+                <div class="vert-content text-capitalize">{{ ($pasien->gender != "" ? $pasien->gender : "--") }}</div>
                 <div class="vert-label">TEMPAT &amp; TANGGAL LAHIR</div>
-                <div class="vert-content">{{ $pasien->tempat_lahir .', '. \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y') }}</div>
+                <div class="vert-content text-capitalize">{{ ($pasien->tempat_lahir != "" ? $pasien->tempat_lahir : "--") .', '. \Carbon\Carbon::parse($pasien->tanggal_lahir)->format('d-m-Y') }}</div>
               </div>
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="vert-label">HANDPHONE</div>
-                <div class="vert-content">{{ $pasien->handphone }}</div>
+                <div class="vert-content">{{ ($pasien->handphone != "" ? $pasien->handphone : "--") }}</div>
                 <div class="vert-label">TELEPON</div>
-                <div class="vert-content">{{ $pasien->telepon }}</div>
+                <div class="vert-content">{{ ($pasien->telepon != "" ? $pasien->telepon : "--") }}</div>
 		        		<div class="vert-label">ALAMAT</div>
-		        		<div class="vert-content col-md-12">{{ $pasien->alamat }}</div>
+		        		<div class="vert-content col-md-12">{{ ($pasien->alamat != "" ? $pasien->alamat : "--") }}</div>
 		        	</div>
 		        </div>
       		</div>
@@ -56,19 +56,19 @@
       			<div class="row">
 		        	<div class="col-md-6 col-sm-12 col-xs-12">
 		        		<div class="vert-label">NAMA HEWAN</div>
-		        		<div class="vert-content">{{ $peliharaan->nama }}</div>
+		        		<div class="vert-content text-capitalize">{{ ($peliharaan->nama != "" ? $peliharaan->nama : "--") }}</div>
                 <div class="vert-label">KODE HEWAN</div>
-                <div class="vert-content">{{ $peliharaan->kode }}</div>
+                <div class="vert-content">{{ ($peliharaan->kode != "" ? $peliharaan->kode : "--") }}</div>
                 <div class="vert-label">JENIS HEWAN</div>
-                <div class="vert-content">{{ $peliharaan->jenis }}</div>
+                <div class="vert-content text-capitalize">{{ ($peliharaan->jenis != "" ? $peliharaan->jenis : "--") }}</div>
               </div>
               <div class="col-md-6 col-sm-12 col-xs-12">
 		        		<div class="vert-label">JENIS KELAMIN</div>
-		        		<div class="vert-content">{{ $peliharaan->gender }}</div>
+		        		<div class="vert-content text-capitalize">{{ ($peliharaan->gender != "" ? $peliharaan->gender : "--") }}</div>
                 <div class="vert-label">RAS HEWAN</div>
-                <div class="vert-content">{{ $peliharaan->ras }}</div>
+                <div class="vert-content text-capitalize">{{ ($peliharaan->ras != "" ? $peliharaan->ras : "--") }}</div>
 								<div class="vert-label">WARNA BULU</div>
-								<div class="vert-content">{{ $peliharaan->warna }}</div>
+								<div class="vert-content text-capitalize">{{ ($peliharaan->warna != "" ? $peliharaan->warna : "--") }}</div>
 		        	</div>
 		        </div>
       		</div>
@@ -103,7 +103,7 @@
 	  <div id="dataPeliharaan" class="dataPeliharaan col-md-12 col-sm-12 col-xs-12 card_wrap">
       <div class="x_panel card_def shadow_fly round-all">
         <div class="x_title">
-          <h2>Rekam medis</h2>
+          <h2>Rekam medis peliharaan</h2>
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -111,35 +111,41 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
+          @if( count($peliharaan->medis) < 1 )
+            <blockquote>
+                <p class="lead text-center">Rekam medis hewan peliharaan tidak ditemukan. Pastikan data rekam medis sudah di input dengan benar atau tidak di hapus dari sistem</p> 
+            </blockquote>
+          @else
 
-          <div class="table-responsive">
-            <table id="datatable" class="table table-striped jambo_table" style="width: 100%">
-              <thead>
-                <tr class="headings">
-                  <th class="column-title">No</th>
-                  <th class="column-title">Tanggal perekaman</th>
-                  <th class="column-title">Diperbaharui</th>
-                  <th class="column-title">Anamnesa</th>
-                  <th class="column-title">Diagnosa</th>
-                  <th class="column-title no-link last"><span class="nobr">Action</span></th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table id="datatable" class="table table-striped jambo_table" style="width: 100%">
+                <thead>
+                  <tr class="headings">
+                    <th class="column-title">No</th>
+                    <th class="column-title">Tanggal perekaman</th>
+                    <th class="column-title">Diperbaharui</th>
+                    <th class="column-title">Anamnesa</th>
+                    <th class="column-title">Diagnosa</th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($peliharaan->medis as $medis)
-                <tr class="even pointer">
-                  <td class="a-center ">{{ $loop->iteration }}</td>
-                  <td class=" ">{{ $medis->created_at }}</td>
-                  <td class=" ">{{ $medis->updated_at }}</td>
-                  <td class=" ">{{ str_limit($medis->anamnesa, $limit = 30, $end = '...') }}</td>
-                  <td class=" ">{{ str_limit($medis->diagnosa, $limit = 30, $end = '...') }}</td>
-                  <td class=" last"><a href="/medis/{{ $pasien->id }}/{{ $peliharaan->id }}/{{ $medis->id }}">View</a></td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+                <tbody>
+                  @foreach($peliharaan->medis as $medis)
+                  <tr class="even pointer">
+                    <td class="a-center ">{{ $loop->iteration }}</td>
+                    <td class=" ">{{ ($medis->created_at != "" ? $medis->created_at : "--") }}</td>
+                    <td class=" ">{{ ($medis->updated_at != "" ? $medis->updated_at : "--") }}</td>
+                    <td class=" ">{{ str_limit( ($medis->anamnesa != "" ? $medis->anamnesa : "--"), $limit = 30, $end = '...') }}</td>
+                    <td class=" ">{{ str_limit( ($medis->diagnosa != "" ? $medis->diagnosa : "--"), $limit = 30, $end = '...') }}</td>
+                    <td class=" last"><a href="/medis/{{ $pasien->id }}/{{ $peliharaan->id }}/{{ $medis->id }}">View</a></td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
 
+          @endif
         </div>
       </div>
     </div>
@@ -158,7 +164,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
-                <h5 class="modal-title" id="myModalLabel">{{$now}} TAMBAH REKAM MEDIS</h5>
+                <h5 class="modal-title" id="myModalLabel">{{$now}} <span class="text-uppercase">Tambah rekam medis</span></h5>
               </div>
               <div class="modal-body">
                 <div class="x_panel">
@@ -167,23 +173,23 @@
                     <span class="section">Data rekam medis</span>
 				            <div class="row">
 	                		<div class="rekam-medis col-md-12 col-xs-12">
-	                			{{Form::label('anamnesa','ANAMNESA')}}
-                				{{Form::textarea('anamnesa', '', ['class'=>'form-control','placeholder'=>'Enter anamnesa..','rows'=>6])}}
+	                			{{Form::label('anamnesa','*ANAMNESA')}}
+                				{{Form::textarea('anamnesa', '', ['class'=>'form-control','placeholder'=>'Input anamnesa..','rows'=>6,'required'=>'required'])}}
 		                	</div>
 
 	                  	<div class="rekam-medis col-md-12 col-xs-12">
 	                  		{{Form::label('diagnosa','DIAGNOSA')}}
-                				{{Form::textarea('diagnosa', '', ['class'=>'form-control','placeholder'=>'Enter diagnosa..','rows'=>6])}}
+                				{{Form::textarea('diagnosa', '', ['class'=>'form-control','placeholder'=>'Input diagnosa..','rows'=>6])}}
 	                		</div>
 
 	                		<div class="rekam-medis col-md-12 col-xs-12">
 	                  		{{Form::label('terapi','TERAPI')}}
-                				{{Form::textarea('terapi', '', ['class'=>' form-control','placeholder'=>'Enter terapi..','rows'=>6])}}
+                				{{Form::textarea('terapi', '', ['class'=>' form-control','placeholder'=>'Input terapi..','rows'=>6])}}
 	                		</div>
 
 	                		<div class="rekam-medis col-md-12 col-xs-12">
 	                  		{{Form::label('keterangan','KETERANGAN')}}
-                				{{Form::textarea('keterangan', '', ['class'=>' form-control','placeholder'=>'Enter keterangan..','rows'=>6])}}
+                				{{Form::textarea('keterangan', '', ['class'=>' form-control','placeholder'=>'Input keterangan..','rows'=>6])}}
 	                		</div>
 	                	</div>
 
