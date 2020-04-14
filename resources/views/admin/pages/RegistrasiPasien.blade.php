@@ -86,10 +86,10 @@
 			                           <span class="input-group-addon">
 			                              <span class="glyphicon glyphicon-calendar"></span>
 			                           </span>
-											</div>
-					            		@if ($errors->has('tanggallahir'))
-															<span class="help-block">{{ $errors->first('tanggallahir') }}</span>
-					            		@endif
+											      </div>
+                            @if ($errors->has('tanggallahir'))
+                                <span class="help-block">{{ $errors->first('tanggallahir') }}</span>
+                            @endif
 				              		</div>
 				              	</div>
 			            	</div>

@@ -38,7 +38,7 @@ class PasienController extends Controller
             $total = $total + count($hewan);
           }
         }
-      	return view('/admin.pages.SemuaPasien', [
+      	return view('admin.pages.SemuaPasien', [
           'pasiens' => $pasiens,
           'hewans'=>$hewans,
           'pemilikTerdelete'=>$total
@@ -53,7 +53,7 @@ class PasienController extends Controller
 
     public function create()
     {
-        return view('/admin.pages.RegistrasiPasien', ['now'=>$this->now()]);
+        return view('admin.pages.RegistrasiPasien', ['now'=>$this->now()]);
     }
 
     public function store(RegisterRequest $request)
@@ -71,7 +71,7 @@ class PasienController extends Controller
         $pasien->alamat         = $request->alamat;
         $pasien->created_by     = $user->name;
         $pasien->updated_by     = $user->name;
-
+        // dd($pasien);
         $simpanPasien = $pasien->save();
         if( $simpanPasien )
         {
@@ -102,7 +102,7 @@ class PasienController extends Controller
           }
         }
 
-        return redirect('/pasien');
+        return redirect()->route('pasien.index');
     }
 
     /*
@@ -110,10 +110,11 @@ class PasienController extends Controller
     */
     public function kodeHewan($idPasien)
     {
-        $kodePasien = Pasien::select('kode')->where('id', $idPasien)->get();
-        foreach ($kodePasien as $value) {
-          $kode = $value->kode;
-        }
+        $pasien = Pasien::select('kode')->where('id', $idPasien)->first();
+        // foreach ($pasien as $value) {
+        //   $kode = $value->kode;
+        // }
+        $kode = $pasien->kode;
 
         return $kode.".1";
     }
@@ -126,9 +127,14 @@ class PasienController extends Controller
     public function getKodePasien()
     {
         //ambil nomer dari tabel hitung yang namanya pasien
-        $getKode = Hitung::where('nama', 'pasien')->firstOrFail();
+        $getKode = Hitung::where('nama', 'pasien')->first();
         $dateNow = date('Ymd');
-        $kode = $dateNow.$getKode->nomer;
+        if($getKode) {
+          $kode = $dateNow.$getKode->nomer;
+        } else {
+          $kode = $dateNow.'1';
+          Hitung::create(['nama' => 'pasien', 'nomer' => 1]);
+        }
         return $kode;
     }
 
@@ -139,11 +145,15 @@ class PasienController extends Controller
     public function setNomerPasien()
     {
         //ambil data yang isi kolom nama = pasien dari tabel hitung
-        $getKode = Hitung::where('nama', 'pasien')->firstOrFail();
-
-        //update kolom nomer yang isi kolom nama = pasien, di tabel hitung
-        Hitung::where('nama', 'pasien')
-                ->update(['nomer' => $getKode->nomer++]);
+        $getKode = Hitung::where('nama', 'pasien')->first();
+        
+        if ($getKode) {
+          //update kolom nomer yang isi kolom nama = pasien, di tabel hitung
+          Hitung::where('nama', 'pasien')->update(['nomer' => $getKode->nomer++]);
+        } else {
+          //insert data nomer urut pasien ke dalam table hitung
+          Hitung::create(['nama' => 'pasien', 'nomer' => 2]);
+        }
     }
 
     public function edit($id)

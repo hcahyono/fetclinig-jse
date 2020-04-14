@@ -21,8 +21,12 @@ class CreatePasienTrigger extends Migration
             SELECT nomer FROM hitung WHERE nama="pasien" INTO angka;
             
             SET tanggal = CURDATE()+0;
-             
-            SET NEW.kode = CONCAT(tanggal, angka);
+            IF (angka != NULL) OR (angka > 0) OR (angka != "") THEN
+            	SET NEW.kode = CONCAT(tanggal, angka);
+            ELSE
+            	SET NEW.kode = CONCAT(tanggal, 1);
+            	INSERT INTO hitung (nama, nomer) VALUES("pasien", 1);
+            END IF;
         END
         ');
     }

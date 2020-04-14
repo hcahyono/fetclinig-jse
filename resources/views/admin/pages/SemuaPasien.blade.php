@@ -12,7 +12,7 @@
     <div class="title_right">
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
         <div class="right_align">
-          <a href="/pasien/registrasi" type="button" class="btn btn-info zoom">Registrasi pasien baru</a>
+          <a href="{{route('pasien.create')}}" type="button" class="btn btn-info zoom">Registrasi pasien baru</a>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
                   <td class="text-capitalize">{{ ($pasien->gender != "" ? $pasien->gender : "--") }}</td>
                   <td class="a-right">{{ ($pasien->handphone != "" ? $pasien->handphone : "--") }}</td>
                   <td class=" ">{{ ($pasien->created_at != "" ? $pasien->created_at : "--") }}</td>
-                  <td class=" last"><a href="/pasien/{{ $pasien->id }}">View</a></td>
+                  <td class=" last"><a href="{{ route('pasien.show', $pasien->id) }}">View</a></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -98,7 +98,7 @@
                       <td class="text-capitalize">{{ ($pemilik->nama != "" ? $pemilik->nama : "--") }}</td>
                       <td class="text-capitalize">{{ ($hewan->jenis != "" ? $hewan->jenis : "--") }}</td>
                       <td class="text-capitalize">{{ ($hewan->gender != "" ? $hewan->gender : "--") }}</td>
-                      <td class=" last"><a href="/medis/{{ $pemilik->id }}/{{ $hewan->id }}">View</a></td>
+                      <td class=" last"><a href="{{ route('medis.index', [$pemilik->id, $hewan->id]) }}">View</a></td>
                     </tr>
                     @endforeach
                   @endif

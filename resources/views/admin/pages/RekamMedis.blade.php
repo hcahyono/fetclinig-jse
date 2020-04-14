@@ -15,7 +15,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
         <div class="right_align">
           <button type="button" class="back btn btn-default zoom btn_right"><i class="fa fa-angle-double-left"></i> sebelumnya</button>
-          <a href="/pdf/{{$pasien->id}}/{{$peliharaan->id}}/{{$medis->id}}" target="_blank" class="btn btn-info zoom btn_right" type="button">Download PDF</a>
+          <a href="{{route('rekam.pdf.single', [$pasien->id, $peliharaan->id, $medis->id])}}" target="_blank" class="btn btn-info zoom btn_right" type="button">Download PDF</a>
         </div>
       </div>
     </div>

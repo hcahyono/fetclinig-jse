@@ -31,7 +31,7 @@
         DATA PASIEN
       </div>
       <div class="tile-stats card_wide shadow_fly">
-        <div class="r-button"><a href="/pasien" class="btn btn-info fly_btn">LIHAT DATA PASIEN</a></div>
+        <div class="r-button"><a href="{{ route('pasien.index') }}" class="btn btn-info fly_btn">LIHAT DATA PASIEN</a></div>
         <div class="tile-title big">Lihat semua data pasien</div>
         <div class="tile-info">Klik tombol LIHAT DATA PASIEN untuk melihat semua data pasien</div>
       </div>
@@ -47,7 +47,7 @@
         REGISTRASI PASIEN
       </div>
       <div class="tile-stats card_wide shadow_fly">
-        <div class="r-button"><a href="/pasien/registrasi" class="btn btn-info fly_btn">REGISTRASI PASIEN</a></div>
+        <div class="r-button"><a href="{{ route('pasien.create') }}" class="btn btn-info fly_btn">REGISTRASI PASIEN</a></div>
         <div class="tile-title big">Registrasi pasien baru</div>
         <div class="tile-info">Klik tombol REGISTRASI PASIEN untuk mendaftarkan pasien baru</div>
       </div>

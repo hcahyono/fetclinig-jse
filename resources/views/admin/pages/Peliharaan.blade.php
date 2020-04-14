@@ -101,7 +101,7 @@
 		              		<div class="col-md-12">
 		                		<div class="panel-title">Informasi peliharaan
 			                		<div class="nav navbar-right">
-			                			<a href="/medis/{{ $pasien->id }}/{{ $peliharaan->id }}" class="lihatRekamMedis btn btn-info zoom btn_right" type="button">Lihat rekam medis</a>
+			                			<a href="{{ route('medis.index', [$pasien->id, $peliharaan->id]) }}" class="lihatRekamMedis btn btn-info zoom btn_right" type="button">Lihat rekam medis</a>
 									        	<a href="{{route('peliharaan.edit', [$pasien->id, $peliharaan->id])}}" id="{{$peliharaan->id}}" class="btn btn-second zoom btn_right" type="button">Edit peliharaan</a>
 									        </div>
 								        </div>

@@ -119,8 +119,8 @@ Route::prefix('panduan')->group(function() {
 });
 
 //Export PDF
-Route::get('/pdf-all/{pasien}/{hewan}', 'ExportController@pdfAll');
-Route::get('/pdf/{pasien}/{hewan}/{medis}', 'ExportController@pdfSingle');
+Route::get('/pdf-all/{pasien}/{hewan}', 'ExportController@pdfAll')->name('rekam.pdf.all');
+Route::get('/pdf/{pasien}/{hewan}/{medis}', 'ExportController@pdfSingle')->name('rekam.pdf.single');
 
 //Ulang Tahun
 Route::prefix('ulang-tahun')->group(function() {

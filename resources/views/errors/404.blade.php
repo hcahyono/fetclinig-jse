@@ -34,7 +34,12 @@
               <div class="mid_center">
                 <h3>tombol untuk keluar</h3>
                 <h3><span class=" fa fa-angle-down"></span></h3>
-                <a href="/" class="btn btn-info">Kembali ke home</a>
+                @auth('web')
+                  <a href="{{ route('home') }}" class="btn btn-info">Kembali ke home</a>
+                @endauth
+                @auth('admin')  
+                  <a href="{{ route('admin.dashboard') }}" class="btn btn-info">Kembali ke home</a>
+                @endauth
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@
       	<div class="right_align">
       		<button type="button" class="back btn btn-default zoom btn_right"><i class="fa fa-angle-double-left"></i> sebelumnya</button>
 	        <button type="button" class="btn btn-info zoom btn_right" data-toggle="modal" data-target=".tambahMedis">Tambah rekam medis</button>
-	        <a href="/pdf-all/{{$pasien->id}}/{{$peliharaan->id}}" target="_blank" class="btn btn-info zoom btn_right" type="button">Download PDF</a>
+	        <a href="{{route('rekam.pdf.all', [$pasien->id, $peliharaan->id])}}" target="_blank" class="btn btn-info zoom btn_right" type="button">Download PDF</a>
       	</div>
       </div>
     </div>
@@ -138,7 +138,7 @@
                     <td class=" ">{{ ($medis->updated_at != "" ? $medis->updated_at : "--") }}</td>
                     <td class=" ">{{ str_limit( ($medis->anamnesa != "" ? $medis->anamnesa : "--"), $limit = 30, $end = '...') }}</td>
                     <td class=" ">{{ str_limit( ($medis->diagnosa != "" ? $medis->diagnosa : "--"), $limit = 30, $end = '...') }}</td>
-                    <td class=" last"><a href="/medis/{{ $pasien->id }}/{{ $peliharaan->id }}/{{ $medis->id }}">View</a></td>
+                    <td class=" last"><a href="{{ route('medis.show', [$pasien->id, $peliharaan->id, $medis->id]) }}">View</a></td>
                   </tr>
                   @endforeach
                 </tbody>

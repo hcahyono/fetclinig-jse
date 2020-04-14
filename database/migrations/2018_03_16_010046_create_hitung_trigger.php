@@ -16,7 +16,13 @@ class CreateHitungTrigger extends Migration
         DB::unprepared('
         CREATE TRIGGER `tr_nomer_tbhitung` AFTER INSERT ON `pasien` FOR EACH ROW
         BEGIN
+          DECLARE angka integer;
+          SELECT nomer FROM hitung WHERE nama="pasien" INTO angka;
+          IF (angka != NULL) OR (angka > 0) OR (angka != "") THEN
             UPDATE hitung SET nomer=nomer+1 WHERE nama="pasien";
+          ELSE
+            INSERT INTO hitung (nama, nomer) VALUES("pasien", 2);
+          END IF;
         END
         ');
     }

@@ -47,7 +47,7 @@ class HomeController extends Controller
         $pasien = Pasien::all()->count();
       	$peliharaan = Hewan::all()->count();
 
-        return view('/admin.pages.Dashboard', ['pasien'=>$pasien, 'peliharaan'=>$peliharaan]);
+        return view('admin.pages.Dashboard', ['pasien'=>$pasien, 'peliharaan'=>$peliharaan]);
         // return view('home');   //default view
     }
 
