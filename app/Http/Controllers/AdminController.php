@@ -171,7 +171,10 @@ class AdminController extends Controller
      */
     public function hewanTrash()
     {
-        $hewanTrashed = Hewan::orderBy('id', 'desc')->onlyTrashed()->paginate(10);
+        $hewanTrashed = Hewan::orderBy('id', 'desc')->onlyTrashed()
+        ->with(['pasien' => function($p){
+          $p->withTrashed();
+        }])->paginate(10);
         return view('/manage.hewan-trashed', ['hewans'=>$hewanTrashed]);
     }
 
@@ -183,7 +186,9 @@ class AdminController extends Controller
      */
     public function kelolaHewan($id)
     {
-        $hewan = Hewan::withTrashed()->findOrFail($id);
+        $hewan = Hewan::onlyTrashed()->with(['pasien' => function($p){
+          $p->withTrashed();
+        }])->findOrFail($id);
         return view('/manage.kelola-hewan', ['hewan'=>$hewan]);
     }
 
@@ -225,7 +230,12 @@ class AdminController extends Controller
      */
     public function medisTrash()
     {
-        $medisTrashed = Medis::orderBy('id', 'desc')->onlyTrashed()->paginate(10);
+        $medisTrashed = Medis::orderBy('id', 'desc')->onlyTrashed()
+        ->with(['hewan' => function($h){
+          $h->with(['pasien' => function($p){
+            $p->withTrashed();
+          }])->withTrashed();
+        }])->paginate(10);
         return view('/manage.medis-trashed', ['medises'=>$medisTrashed]);
     }
 
@@ -237,7 +247,13 @@ class AdminController extends Controller
      */
     public function kelolaMedis($id)
     {
-        $medis = Medis::withTrashed()->findOrFail($id);
+        // $medis = Medis::withTrashed()->findOrFail($id);
+        $medis = Medis::onlyTrashed()
+        ->with(['hewan' => function($h){
+          $h->with(['pasien' => function($p){
+            $p->withTrashed();
+          }])->withTrashed();
+        }])->findOrFail($id);
         return view('/manage.kelola-medis', ['medis'=>$medis]);
     }
 

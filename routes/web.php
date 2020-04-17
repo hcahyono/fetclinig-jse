@@ -10,6 +10,29 @@
 |
 */
 
+use Anam\PhantomMagick\Converter;
+use Illuminate\View\View;
+
+Route::get('/shot', function () {
+  // $view = View::make('admin.export.idCard')->render();
+  $options = [
+    'width' => 1011,
+    'height' => 638,
+    'quality' => 100
+  ];
+  $conv = new Converter();
+  $conv->source(route('id.card'))
+  ->toPng()
+  ->imageOptions($options)
+  // ->download('card.png');
+  ->save(public_path('storage/card/'.rand().'.png'));
+  // ->serve();
+});
+
+Route::get('/card', function() {
+  return view('admin.export.idCard');
+})->name('id.card');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -73,7 +96,10 @@ Route::prefix('pasien')->group(function() {
 
 	//tampil pasien & peliharaan
 	Route::get('/', 'PasienController@index')->name('pasien.index');
-	Route::get('/{id}', 'PasienController@show')->name('pasien.show');
+  Route::get('/{id}', 'PasienController@show')->name('pasien.show');
+  
+  //id card
+  Route::post('/card/{id}', 'CardController@idCardShow')->name('pasien.card.show');
 
 	//edit
 	Route::get('/{id}/edit', 'PasienController@edit')->name('pasien.edit');
@@ -121,6 +147,8 @@ Route::prefix('panduan')->group(function() {
 //Export PDF
 Route::get('/pdf-all/{pasien}/{hewan}', 'ExportController@pdfAll')->name('rekam.pdf.all');
 Route::get('/pdf/{pasien}/{hewan}/{medis}', 'ExportController@pdfSingle')->name('rekam.pdf.single');
+//Id Card Template
+Route::get('/template/card/{pasien}', 'CardController@idCardTemplate')->name('template.card');
 
 //Ulang Tahun
 Route::prefix('ulang-tahun')->group(function() {

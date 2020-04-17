@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>No</th>
+        <th>Nama pemilik</th>
         <th>Nama hewan</th>
         <th>Anamnesa</th>
         <th>Diagnosa</th>
@@ -13,21 +14,24 @@
       </tr>
     </thead>
     <tbody>
-    	@foreach($medises as $medis)
-        @if (count($medis->hewan()->withTrashed()->get()) > 0 )
-          @foreach($medis->hewan()->withTrashed()->get() as $hewan)
+      @if (count($medises))
+        @foreach($medises as $medis)
           <tr>
-            <td>{{$loop->parent->iteration}}</td>
-            <td>{{ ($hewan->nama != "" ? $hewan->nama : "-" ) }}</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{ ($medis->hewan->pasien ? $medis->hewan->pasien->nama : "-" ) }}</td>
+            <td>{{ ($medis->hewan ? $medis->hewan->nama : "-" ) }}</td>
             <td>{{ str_limit( ($medis->anamnesa != "" ? $medis->anamnesa : "-" ), $limit = 16, $end = '...')}}</td>
             <td>{{ str_limit( ($medis->diagnosa != "" ? $medis->diagnosa : "-" ), $limit = 16, $end = '...')}}</td>
             <td>
-            	<a href="{{route('kelola.medis',[$medis->id])}}" class="btn btn-link btn-sm">View</a>
+              <a href="{{route('kelola.medis',[$medis->id])}}" class="btn btn-link btn-sm">View</a>
             </td>
           </tr>
-          @endforeach
-        @endif
-      @endforeach
+        @endforeach
+      @else
+       <tr>
+         <td colspan="6">data tidak ditemukan</td>
+       </tr>
+      @endif
     </tbody>
   </table>
   

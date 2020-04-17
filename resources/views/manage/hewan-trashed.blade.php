@@ -14,22 +14,24 @@
       </tr>
     </thead>
     <tbody>
-    	@foreach($hewans as $hewan)
-        @if (count($hewan->pasien()->withTrashed()->get()) > 0 )
-          @foreach($hewan->pasien()->withTrashed()->get() as $pemilik)
-            <tr>
-              <td>{{$loop->parent->iteration}}</td>
-              <td>{{ ($pemilik->nama != "" ? $pemilik->nama : "-" ) }}</td>
-              <td>{{ ($hewan->nama != "" ? $hewan->nama : "-" ) }}</td>
-              <td>{{ ($hewan->jenis != "" ? $hewan->jenis : "-" ) }}</td>
-              <td>{{ ($hewan->gender != "" ? $hewan->gender : "-" ) }}</td>
-              <td>
-              	<a href="{{route('kelola.hewan',[$hewan->id])}}" class="btn btn-link btn-sm">View</a>
-              </td>
-            </tr>
-          @endforeach
-        @endif
-      @endforeach
+      @if (count($hewans))
+        @foreach($hewans as $hewan)
+          <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{ ($hewan->pasien ? $hewan->pasien->nama : "-" ) }}</td>
+            <td>{{ $hewan->nama }}</td>
+            <td>{{ $hewan->jenis }}</td>
+            <td>{{ $hewan->gender }}</td>
+            <td>
+              <a href="{{route('kelola.hewan',[$hewan->id])}}" class="btn btn-link btn-sm">View</a>
+            </td>
+          </tr>
+        @endforeach
+      @else
+       <tr>
+         <td colspan="6">data tidak ditemukan</td>
+       </tr>
+      @endif
     </tbody>
   </table>
 

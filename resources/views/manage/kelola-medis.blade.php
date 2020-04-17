@@ -3,6 +3,32 @@
 @section('contents')
 	<h2>Rekam medis</h2>
     <ul class="list-group">
+      <li class="list-group-item">Pemilik peliharaan :  <br>
+        <table class="table table-stripped table-sm">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Kode</th>
+              <th>Gender</th>
+              <th>Kontak</th>
+              <th>Alamat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              @if ($medis->hewan->pasien)    
+                <td><strong>{{ $medis->hewan->pasien->nama }}</strong></td>
+                <td>{{ $medis->hewan->pasien->kode }}</td>
+                <td>{{ $medis->hewan->pasien->gender }}</td>
+                <td>{{ "Tel. ". $medis->hewan->pasien->telepon}} <br> {{ "Hp. ". $medis->hewan->pasien->handphone }}</td>
+                <td>{{ $medis->hewan->pasien->alamat }}</td>
+              @else
+                <td colspan="5" class="text-center">data tidak ditemukan.</td>
+              @endif
+            </tr>
+          </tbody>
+        </table>
+      </li>
       <li class="list-group-item">Hewan peliharaan :  <br>
           <table class="table table-stripped table-sm">
             <thead>
@@ -15,15 +41,17 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($medis->hewan()->withTrashed()->get() as $hewan)
               <tr>
-                <td><strong>{{($hewan->nama != "" ? $hewan->nama : "-" )}}</strong></td>
-                <td>{{($hewan->jenis != "" ? $hewan->jenis : "-" )}}</td>
-                <td>{{($hewan->gender != "" ? $hewan->gender : "-" )}}</td>
-                <td>{{($hewan->ras != "" ? $hewan->ras : "-" )}}</td>
-                <td>{{($hewan->warna != "" ? $hewan->warna : "-" )}}</td>
+                @if ($medis->hewan)    
+                  <td><strong>{{ $medis->hewan->nama }}</strong></td>
+                  <td>{{ $medis->hewan->jenis }}</td>
+                  <td>{{ $medis->hewan->gender }}</td>
+                  <td>{{ $medis->hewan->ras }}</td>
+                  <td>{{ $medis->hewan->warna }}</td>
+                @else
+                  <td colspan="5" class="text-center">data tidak ditemukan.</td>
+                @endif
               </tr>
-              @endforeach
             </tbody>
           </table>
       </li>

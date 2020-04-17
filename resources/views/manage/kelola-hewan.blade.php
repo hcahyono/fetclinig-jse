@@ -16,16 +16,18 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($hewan->pasien()->withTrashed()->get() as $pemilik)
               <tr>
-                <td><strong>{{($pemilik->nama != "" ? $pemilik->nama : "-" )}}</strong></td>
-                <td>{{($pemilik->kode != "" ? $pemilik->kode : "-" )}}</td>
-                <td>{{($pemilik->gender != "" ? $pemilik->gender : "-" )}}</td>
-                <td>{{($pemilik->handphone != "" ? $pemilik->handphone : "-" )}}</td>
-                <td>{{($pemilik->telepon != "" ? $pemilik->telepon : "-" )}}</td>
-                <td>{{($pemilik->alamat != "" ? $pemilik->alamat : "-" )}}</td>
+                @if ($hewan->pasien)
+                  <td><strong>{{ $hewan->pasien->nama }}</strong></td>
+                  <td>{{ $hewan->pasien->kode }}</td>
+                  <td>{{ $hewan->pasien->gender }}</td>
+                  <td>{{ $hewan->pasien->handphone }}</td>
+                  <td>{{ $hewan->pasien->telepon }}</td>
+                  <td>{{ $hewan->pasien->alamat }}</td>
+                @else
+                  <td colspan="5" class="text-center">data tidak ditemukan.</td>
+                @endif
               </tr>
-              @endforeach
             </tbody>
           </table>
       </li>

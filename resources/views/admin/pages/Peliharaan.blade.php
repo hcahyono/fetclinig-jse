@@ -26,6 +26,7 @@
       <div class="tile-stats card_def shadow_fly">
         <div class="tile-name">Pemilik hewan peliharaan
 	        <div class="nav navbar-right">
+            <button type="button" class="btn btn-info zoom btn_right" id="kartu_show">Kartu</button>
 	        	<a href="{{route('pasien.edit', [$pasien->id])}}" id="editPemilik" class="btn btn-second zoom btn_right" type="button">Edit pemilik</a>
 	        </div>
         	<div class="clearfix"></div>
@@ -269,4 +270,90 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    	<div class="modal fade card-id" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h5 class="modal-title" id="cardModalLabel"><span class="text-uppercase">Kartu untuk pemilik hewan</span></h5>
+              </div>
+              <div class="modal-body">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <img id="card_image" src="" alt="image" class="img-rounded img-responsive">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-second zoom" data-dismiss="modal">Keluar</button>
+                <button type="button" class="btn btn-success zoom btn_right">Download</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endsection
+
+@section('script')
+<script>
+  $(function(){
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        '_token' : $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('#kartu_show').click(function(){
+      btnKartu('loading');
+      getCardId(function(){
+        btnKartu();
+      });
+    });
+  });
+
+  function btnKartu(action = null)
+  {
+    var btn = $('#kartu_show')
+    if (action == 'loading') {
+      btn.html('<i class="fa fa-spinner fa-spin"></i> Loading...')
+      btn.attr('disabled', true);
+    } else {
+      $('#kartu_show').html('Kartu')
+      btn.removeAttr('disabled');
+    }
+  }
+
+  function getCardId(on_done = null) {
+    var endpoint = `{{ route('pasien.card.show', [$pasien->id]) }}`
+    $.ajax({
+      url: endpoint,
+      type: 'POST',
+      dataType: 'json',
+      processData:false,
+      contentType:false,
+      cache:false,
+    }).done(function(data) {
+      if (data.status) {
+        $('#card_image').attr('src', '{{ asset("storage/card") }}/' + data.result.pasien.kode + '.png')
+        $('.card-id').modal('show');
+      } else {
+        alert(data.desc);
+      }
+      if (on_done != null) {
+        on_done();
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      alert('response gagal');
+      btnKartu();
+    });
+  }
+</script>
 @endsection
