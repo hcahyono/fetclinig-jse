@@ -154,6 +154,7 @@ return [
          * Package Service Providers...
          */
         'Anam\PhantomMagick\ConverterServiceProvider',
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -222,6 +223,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Converter' => 'Anam\PhantomMagick\Facades\Converter',
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 

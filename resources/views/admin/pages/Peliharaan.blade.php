@@ -276,20 +276,27 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                <button type="button" class="close btn-action" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
                 <h5 class="modal-title" id="cardModalLabel"><span class="text-uppercase">Kartu untuk pemilik hewan</span></h5>
               </div>
               <div class="modal-body">
+                <div class="content-wrap flex-display">
+                  <div class="width-60">
+                    <img id="card_image" src="" alt="image" class="img-responsive shadow_fly">
+                  </div>
+                </div>
+                <br>
                 <div class="x_panel">
                   <div class="x_content">
-                    <img id="card_image" src="" alt="image" class="img-rounded img-responsive">
+                    <span>Lakukan Refresh kartu apabila terjadi perubahan pada data nama dan alamat pasien atau data lain yang berkaitan dengan kartu</span>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-second zoom" data-dismiss="modal">Keluar</button>
-                <button type="button" class="btn btn-success zoom btn_right">Download</button>
+                <button type="button" class="btn btn-second zoom btn-action" data-dismiss="modal">Keluar</button>
+                <button type="button" class="btn btn-warning zoom btn-action" id="kartu_regenerate">Refresh</button>
+                <a href="#" class="btn btn-success zoom btn_right btn-action" id="kartu_download" download="">Download</a>
               </div>
           </div>
         </div>
@@ -317,7 +324,31 @@
         btnKartu();
       });
     });
+
+    $('#kartu_regenerate').click(function(el){
+      var btnTextOri = el.target.innerText
+      btnLoading(el, true)
+      regenerateCard(function(){
+        el.target.innerText = btnTextOri
+        btnLoading(el, false)
+      })
+    });
   });
+
+  function btnLoading(elmn = null, loading = null)
+  {
+    if (elmn != null){
+      var btnClick = $(elmn.target)
+      var btnText = elmn.target.innerText
+      if(loading != null && loading == true){
+        btnClick.html('<i class="fa fa-spinner fa-spin"></i> Loading...')
+        $('.btn-action').attr('disabled', true);
+      } else {
+        btnClick.html(btnText)
+        $('.btn-action').removeAttr('disabled');
+      }
+    }
+  }
 
   function btnKartu(action = null)
   {
@@ -342,7 +373,8 @@
       cache:false,
     }).done(function(data) {
       if (data.status) {
-        $('#card_image').attr('src', '{{ asset("storage/card") }}/' + data.result.pasien.kode + '.png')
+        $('#card_image').attr('src', '{{ asset("storage/card") }}/' + data.result.pasien.kode + '.png?v='+ Math.random())
+        $('#kartu_download').attr('href', '{{ asset("storage/card") }}/' + data.result.pasien.kode + '.png?v='+ Math.random()).attr('download', data.result.pasien.kode)
         $('.card-id').modal('show');
       } else {
         alert(data.desc);
@@ -353,6 +385,29 @@
     }).fail(function(jqXHR, textStatus, errorThrown) {
       alert('response gagal');
       btnKartu();
+    });
+  }
+
+  function regenerateCard(on_done = null) {
+    var endpoint = `{{ route('pasien.card.regenerate', [$pasien->id]) }}`
+    $.ajax({
+      url: endpoint,
+      type: 'POST',
+      dataType: 'json',
+      processData:false,
+      contentType:false,
+      cache:false,
+    }).done(function(data) {
+      if (data.status) {
+        $('#card_image').attr('src', '{{ asset("storage/card") }}/' + data.result.pasien.kode + '.png?v='+ Math.random())
+      } else {
+        alert(data.desc);
+      }
+      if (on_done != null) {
+        on_done();
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      alert('response gagal');
     });
   }
 </script>

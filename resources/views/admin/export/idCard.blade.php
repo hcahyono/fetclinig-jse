@@ -7,24 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Jose vet clinic') }}</title>
     <style>
-      body {
+      *{
         margin: 0;
         padding: 0;
       }
 
-      *{
-        font-family:  arial, sans-serif;
+      body {
+        font-family: sans-serif;
       }
 
       .id-card-frame {
-        background-color: darkgrey;
-        border-radius: 8px;
+        background-color: #ffffff;
+        /* border-radius: 8px; */
         width: 1011px;
         height: 638px;
+        overflow: hidden;
       }
 
       .id-card-logo {
-        /* background-color: cadetblue; */
         padding: 20px 0px;
         text-align: center;
       }
@@ -35,7 +35,7 @@
         height: 2px;
         display: block;
         padding-top: 10px;
-        border-bottom: 2px solid #2e789b;
+        border-bottom: 6px solid #2e789b;
       }
 
       .id-card-logo img {
@@ -45,31 +45,68 @@
       }
 
       .id-card-body {
-        background-color: darkkhaki;
+        /* background-color: aquamarine; */
+        padding: 20px 0;
       }
 
       .id-card-barcode {
-        background-color: indianred;
         padding: 20px;
+        margin: 0px auto;
+        text-align: center;
+      }
+
+      .id-card-barcode > div {
+        margin: 0px auto;
         text-align: center;
       }
 
       .id-card-biodata {
-        background-color: cornflowerblue;
-        width: 50%;
+        width: 65%;
         height: 100%;
         margin: 0 auto;
       }
 
-      .id-card-footer {
-        background-color: dodgerblue;
-        bottom: 0;
+      .id-card-biodata h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 1.5em;
+      }
+
+      .id-card-biodata h2 {
+        padding-bottom: 10px;
+        text-transform: capitalize;
+      }
+
+      .id-card-biodata h3 {
+        padding-top: 5px;
+        min-height: 90px;
+        max-height: 90px;
+        overflow: hidden;
+        text-align: justify;
+        /* background-color: cadetblue; */
+      }
+
+      .id-card-footer::before {
+        content: '';
+        width: 100%;
+        display: block;
+        border-top: 4px solid #e46228;
       }
 
       .id-card-address {
-        background-color: lightskyblue;
-        padding: 0 40px;
+        background-color: #2e789b;
+        padding: 20px 40px;
         text-align: center;
+        min-height: 110px;
+        max-height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .id-card-address p {
+        color: #ffffff;
+        margin-bottom: 7px;
       }
     </style>
   </head>
@@ -80,18 +117,19 @@
       </div>
       <div class="id-card-body">
         <div class="id-card-barcode">
-          <h2>BARCODE</h2>
+          {!! DNS1D::getBarcodeHTML(@$pasien ? @$pasien->kode : '123TEST45', 'C128',3,53) !!}
         </div>
         <div class="id-card-biodata">
           <h1>{{ @$pasien ? @$pasien->kode : '123TEST45' }}</h1>
-          <h2 class="text-capitalize">{{ @$pasien ? @$pasien->nama : 'Testing' }}</h2>
+          <h2>{{ @$pasien ? ($pasien->gender == 'perempuan' ? "Mrs. $pasien->nama" : "Mr. $pasien->nama") : 'mr. john smith nanda mahendra' }}</h2>
+          <span>Alamat,</span>
+          <h3 class="address">{{ @$pasien ? @$pasien->alamat : 'JLn Bougenville No.01, RT.02/RW.03 Raflesia arnoldi, Kec. Sirih Gading, Kota Rosella, Wijayakusuma 45678' }}</h3>
         </div>
       </div>
       <div class="id-card-footer">
-        <hr>
         <div class="id-card-address">
           <p>Kartu ini adalah kartu pasien <b>{{ config('app.name', 'Jose Vet Clinic') }}</b></p>
-          <p>JLn Mayor Tni AD Ismail Saili, Jl. Sungai Ampal, RT.57/RW.No 9, Sumber Rejo, Kec. Balikpapan Tengah, Kota Balikpapan, Kalimantan Timur 76114</p>
+          <p>Jl. Sungai Ampal, RT.57/RW.No 9, Sumber Rejo, Kec. Balikpapan Tengah, Kota Balikpapan, Kalimantan Timur 76114</p>
           <p>Telp. 568 861388 | 0821-5487-7993</p>
         </div>
       </div>

@@ -14,6 +14,9 @@ class CardController extends Controller
   }
 
   public function createCard($pasien) {
+    if (file_exists(public_path('storage/card/'.$pasien->kode.'.png'))) {
+      unlink(public_path('storage/card/'.$pasien->kode.'.png'));
+    }
     $options = [
       'width' => 1011,
       'height' => 638,
@@ -40,6 +43,21 @@ class CardController extends Controller
       if (!file_exists(public_path('storage/card/'.$pasien->kode.'.png'))) {
         $this->createCard($pasien);
       }
+      $data = [
+        'pasien' => $pasien
+      ];
+      $resp = ['status' => true, 'desc' => 'success', 'result' => $data];
+    } else {
+      $resp = ['status' => false, 'desc' => 'data pasien tidak ditemukan'];
+    }
+
+    return response()->json($resp, 200);
+  }
+
+  public function reGenerateCard($id){
+    $pasien = Pasien::find($id);
+    if ($pasien) {
+      $this->createCard($pasien);
       $data = [
         'pasien' => $pasien
       ];

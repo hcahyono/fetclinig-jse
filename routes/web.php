@@ -100,6 +100,7 @@ Route::prefix('pasien')->group(function() {
   
   //id card
   Route::post('/card/{id}', 'CardController@idCardShow')->name('pasien.card.show');
+  Route::post('/card/{id}/regenerate', 'CardController@reGenerateCard')->name('pasien.card.regenerate');
 
 	//edit
 	Route::get('/{id}/edit', 'PasienController@edit')->name('pasien.edit');
