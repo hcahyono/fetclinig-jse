@@ -25,6 +25,12 @@
       <div class="x_panel card_def shadow_fly round-all">
         <div class="x_title">
           <h2>Pemilik peliharaan</h2>
+          {{-- <div class="nav navbar-right">
+            <form id="barcode_form">
+              @csrf
+              <input type="text" name="barcode" id="barcode_input">
+            </form>
+          </div> --}}
           <div class="clearfix"></div>
         </div>
 
@@ -112,4 +118,19 @@
   </div>
   <div class="clearfix"></div>
 
+@endsection
+
+@section('script')
+<script>
+$(function(){
+  // var inputBar = 
+  // var pasienInputSearch = $('input[aria-controls="datatable-buttons"]');
+  // // pasienInputSearch.focus();
+  // pasienInputSearch.triggerHandler("focus")
+  // $('#barcode_form').submit(function(event){
+  //   event.preventDefault();
+  //   console.log(event);
+  // })
+});
+</script>
 @endsection

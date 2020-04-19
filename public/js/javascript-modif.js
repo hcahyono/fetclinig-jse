@@ -28,5 +28,13 @@ $(document).ready(function()
 		window.location.href = 'http://josevetclinic.ap/pasien';
 	});
 
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      '_token' : $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
 });

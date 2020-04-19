@@ -12,7 +12,7 @@
     <div class="title_right">
       <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
       	<div class="right_align">
-      		<button type="button" class="back-to-pasien btn btn-default zoom btn_right"><i class="fa fa-angle-double-left"></i> sebelumnya</button>
+      		<button type="button" class="back btn btn-default zoom btn_right"><i class="fa fa-angle-double-left"></i> sebelumnya</button>
 	        <button type="button" class="btn btn-info zoom btn_right" data-toggle="modal" data-target=".tambahpeliharaan">Tambah peliharaan</button>
       	</div>
       </div>
@@ -309,15 +309,6 @@
 @section('script')
 <script>
   $(function(){
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      data: {
-        '_token' : $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
     $('#kartu_show').click(function(){
       btnKartu('loading');
       getCardId(function(){
@@ -333,6 +324,8 @@
         btnLoading(el, false)
       })
     });
+
+    console.log(window.location.href);
   });
 
   function btnLoading(elmn = null, loading = null)
