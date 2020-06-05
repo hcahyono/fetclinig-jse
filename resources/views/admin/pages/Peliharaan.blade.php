@@ -26,7 +26,7 @@
       <div class="tile-stats card_def shadow_fly">
         <div class="tile-name">Pemilik hewan peliharaan
 	        <div class="nav navbar-right">
-            <button type="button" class="btn btn-info zoom btn_right" id="kartu_show">Kartu</button>
+            {{-- <button type="button" class="btn btn-info zoom btn_right" id="kartu_show">Kartu</button> --}}
 	        	<a href="{{route('pasien.edit', [$pasien->id])}}" id="editPemilik" class="btn btn-second zoom btn_right" type="button">Edit pemilik</a>
 	        </div>
         	<div class="clearfix"></div>
