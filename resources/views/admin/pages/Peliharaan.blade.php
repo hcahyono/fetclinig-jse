@@ -325,7 +325,7 @@
       })
     });
 
-    console.log(window.location.href);
+    // console.log(window.location.href);
   });
 
   function btnLoading(elmn = null, loading = null)

@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+  var _token = $('meta[name="csrf-token"]').attr('content')
 
 	$(".close-edit").click(function()
 	{
@@ -30,10 +31,10 @@ $(document).ready(function()
 
   $.ajaxSetup({
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': _token
     },
     data: {
-      '_token' : $('meta[name="csrf-token"]').attr('content')
+      '_token' : _token
     }
   });
 

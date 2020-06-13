@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- CSRF Token --}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Jose vet clinic') }} | @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" >
@@ -30,6 +30,9 @@
     <link href="{{ asset('/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
     <link href="{{ asset('/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
+    <!-- select2 -->
+    <link href="{{ asset('/vendor/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/vendor/select2/dist/css/theme/select2-bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('/css/custom.min.css') }}" rel="stylesheet">
     <!-- Custom Style -->
@@ -170,6 +173,11 @@
       </div> <!-- main container -->
     </div> <!-- container body -->
 
+    {{-- global js variable --}}
+    <script>
+      var _token = document.getElementById('csrf-token').getAttribute('content')
+    </script>
+
     <!-- jQuery -->
     <script src="{{ asset('/vendor/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -213,6 +221,9 @@
     <script src="{{ asset('/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- validator -->
     <script src="{{ asset('/vendor/validator/validator.js') }}"></script>
+    <!-- select2 -->
+    <script src="{{ asset('/vendor/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/vendor/select2/dist/js/i18n/id.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('/js/custom.min.js') }}"></script>
     <!-- Modif Theme Scripts -->

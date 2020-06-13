@@ -15,7 +15,7 @@ class Periksa extends Model
 
   public function dokter() 
   {
-    return $this->belongsTo('App\Models\User', 'dokter_id')->where('role_id', 5);
+    return $this->belongsTo('App\User', 'dokter_id')->where('role_id', 5);
   }
 
   public function medis()

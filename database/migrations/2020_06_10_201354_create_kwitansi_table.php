@@ -22,12 +22,12 @@ class CreateKwitansiTable extends Migration
             $table->string('satuan_qty', 50)->nullable();
             $table->decimal('biaya_satuan')->default(0);
             $table->decimal('sub_total')->default(0);
-            $table->unsignedInteger('f_status')->comment('1:menunggu pembayaran, 2:lunas, 3:belum lunas');
+            // $table->unsignedInteger('f_status')->comment('1:menunggu pembayaran, 2:lunas, 3:belum lunas');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedInteger('created_by')->comment('id users, [dokter]');
-            $table->unsignedInteger('updated_by')->comment('id users, [resepsionis / kasir]');
-            $table->unsignedInteger('deleted_by')->comment('id users, [semua roles bisa]');
+            $table->unsignedInteger('updated_by')->default(0)->comment('id users, [resepsionis / kasir]');
+            $table->unsignedInteger('deleted_by')->default(0)->comment('id users, [semua roles bisa]');
 
             $table->collation = 'utf8mb4_general_ci';
         });
