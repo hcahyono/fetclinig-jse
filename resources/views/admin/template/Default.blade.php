@@ -83,6 +83,7 @@
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('pasien.create') }}">Registrasi pasien baru</a></li>
+                      <li><a href="{{ route('periksa.create') }}">Pemeriksaan pasien</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bell"></i> Notifikasi <span class="badge">@include('admin.pages.NotifUltah')</span> <span class="fa fa-chevron-down"></span></a>
@@ -172,11 +173,6 @@
         {{-- /footer content --}}
       </div> <!-- main container -->
     </div> <!-- container body -->
-
-    {{-- global js variable --}}
-    <script>
-      var _token = document.getElementById('csrf-token').getAttribute('content')
-    </script>
 
     <!-- jQuery -->
     <script src="{{ asset('/vendor/jquery/dist/jquery.min.js') }}"></script>

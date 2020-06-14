@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Helper;
 use App\Models\Medis;
+use App\Models\Periksa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PeriksaController extends Controller
@@ -31,6 +34,7 @@ class PeriksaController extends Controller
    */
   public function create()
   {
+    // dd(Helper::kodePeriksa());
     return view('periksa.create', ['now'=>$this->now()]);
   }
 
@@ -48,13 +52,32 @@ class PeriksaController extends Controller
       //create rekam medis
       $rekamMedis = Medis::create([
         'hewan_id' => $req->peliharaan,
-        'anamnesa' => $req->anamnesa
+        'anamnesa' => $req->anamnesa,
+        'created_at' => now()->format('Y-m-d H:i:s'),
+        'created_by' => Auth::user()->name
       ]);
     } catch (\Exception $e) {
       return back()->withInput()->with('error', 'Gagal saat menyimpan anamnesa');
     }
+
+    if ($rekamMedis) {
+      try {
+        //created data periksa
+        $periksa = Periksa::create([
+          'kode' => Helper::kodePeriksa(),
+          'medis_id' => $rekamMedis->id,
+          'tgl_periksa' => now()->format('Y-m-d H:i:s'),
+          'f_status' => $req->saveAs,
+          'created_at' => now()->format('Y-m-d H:i:s'),
+          'created_by' => Auth::user()->id
+        ]);
+      } catch (\Exception $e) {
+        $rekamMedis->delete();
+        return back()->withInput()->with('error', 'Gagal saat menyimpan data periksa');
+      }
+    }
     
-    dd('sukses');
+    return back()->with('success', 'Data periksa berhasil disimpan');
   }
 
   protected function storeValidator(Request $req)
@@ -62,6 +85,7 @@ class PeriksaController extends Controller
     $req->validate([
       'peliharaan' => ['required', 'integer', 'min:1', 'exists:hewan,id'],
       'anamnesa' => ['required', 'string', 'min:3'],
+      'saveAs' => ['required', 'integer', 'min:1'],
     ]);
   }
 

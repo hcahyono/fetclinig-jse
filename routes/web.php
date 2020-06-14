@@ -134,7 +134,7 @@ Route::group(['middleware' => 'auth'], function(){
   });
 
   Route::get('/test', function() {
-    dd(Helper::kodePeriksa());
+    dd(now()->format('Y-m-d H:i:s'));
   });
 
 });

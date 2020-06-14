@@ -1,6 +1,8 @@
+const _token = document.getElementById('csrf-token').getAttribute('content')
+const _site_url = "{{ url('/') }}"
+
 $(document).ready(function()
 {
-  var _token = $('meta[name="csrf-token"]').attr('content')
 
 	$(".close-edit").click(function()
 	{
@@ -26,8 +28,9 @@ $(document).ready(function()
 
 	$(".back-to-pasien").click(function()
 	{
-		window.location.href = 'http://josevetclinic.ap/pasien';
-	});
+		window.location.href = _site_url + '/pasien';
+  });
+  
 
   $.ajaxSetup({
     headers: {
@@ -39,3 +42,16 @@ $(document).ready(function()
   });
 
 });
+
+ // global function set button disable when any http action
+ window.onAction = function(on_action = false) {
+  if (on_action) {
+    if ($('.can-action').length) {
+      $('.can-action').attr('disabled', true)
+    }
+  } else {
+    if ($('.can-action').length) {
+      $('.can-action').attr('disabled', false)
+    }
+  }
+};

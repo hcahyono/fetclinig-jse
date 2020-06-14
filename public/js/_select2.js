@@ -14,7 +14,7 @@ $(function(){
         dataType: "json",
         delay: 500, // wait 500 milliseconds before triggering the request
         processResults: function (data, params) {
-            console.log(data);
+            // console.log(data);
             params.page = params.page || 1;
             return {results: data.data, pagination: {more: (params.page * 10) < data.total}};
         }
