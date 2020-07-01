@@ -9,9 +9,9 @@
         "anam/phantomjs-linux-x86-binary": "^2.1",
         "anam/phantommagick": "^2.0",
         "milon/barcode": "^5.1",
-        "barryvdh/laravel-dompdf": "^0.8.2",
+        "barryvdh/laravel-dompdf": "^0.8.6",
         "fideloper/proxy": "~4.0",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "unisharp/laravel-ckeditor": "^4.7"
