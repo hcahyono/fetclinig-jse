@@ -1,5 +1,5 @@
 $(function(){
-  console.log('loaded')
+  // console.log('loaded')
   if ($('#select_peliharaan').length > 0) {
     $('#select_peliharaan').select2({
       theme: "bootstrap",
