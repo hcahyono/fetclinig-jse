@@ -11,6 +11,7 @@
 */
 
 use Anam\PhantomMagick\Converter;
+use App\Events\TestEvent;
 // use Illuminate\Routing\Route;
 use Illuminate\View\View;
 use App\Helpers\Helper;
@@ -134,7 +135,8 @@ Route::group(['middleware' => 'auth'], function(){
   });
 
   Route::get('/test', function() {
-    dd(now()->format('Y-m-d H:i:s'));
+    broadcast(new TestEvent('hay'));
+    // dd(now()->format('Y-m-d H:i:s'));
   });
 
 });

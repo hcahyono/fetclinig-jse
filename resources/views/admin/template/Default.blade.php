@@ -40,7 +40,7 @@
   </head>
 
   <body class="nav-md">
-    <div class="container body">
+    <div class="container body" id="app">
       <div class="main_container">
       {{-- left nav --}}
         <div class="col-md-3 left_col menu_fixed">
@@ -230,6 +230,8 @@
     <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     <!-- ckEditor-wysiwyg Load-->
     <script src="{{ asset('/js/ck-editor.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
   </body>
 </html>
