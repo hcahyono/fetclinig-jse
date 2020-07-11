@@ -12,6 +12,8 @@
     <title>{{ config('app.name', 'Jose vet clinic') }} | @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" >
 
+    <!-- Custom Style -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="{{ asset('/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -35,8 +37,6 @@
     <link href="{{ asset('/vendor/select2/dist/css/theme/select2-bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('/css/custom.min.css') }}" rel="stylesheet">
-    <!-- Custom Style -->
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -220,6 +220,8 @@
     <!-- select2 -->
     <script src="{{ asset('/vendor/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('/vendor/select2/dist/js/i18n/id.js') }}"></script>
+    <!-- Compiled Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('/js/custom.min.js') }}"></script>
     <!-- Modif Theme Scripts -->
@@ -230,8 +232,6 @@
     <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     <!-- ckEditor-wysiwyg Load-->
     <script src="{{ asset('/js/ck-editor.js') }}"></script>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
   </body>
 </html>

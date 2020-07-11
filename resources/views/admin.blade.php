@@ -27,6 +27,9 @@
                           <li class="nav-item">
                             <a class="nav-link" href="{{route('medis.trash')}}">Trash rekam medis</a>
                           </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{route('cmd.exec', ['key' => 'socket_serve'])}}">Aktifkan soket</a>
+                          </li>
                         </ul>
                       </div>
                     </div>

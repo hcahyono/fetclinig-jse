@@ -179,6 +179,8 @@ Route::group(['prefix' => 'admin'], function($app) {
     Route::get('/panduan/{panduan}/edit', 'AdminController@panduanEdit')->name('edit.panduan');
     Route::put('/panduan/{panduan}', 'AdminController@panduanUpdate')->name('update.panduan');
     Route::delete('/panduan/{panduan}', 'AdminController@panduanDestroy')->name('delete.panduan');
+
+    Route::get('/cmd/exec/{key?}', 'CmdController@artisanCmd')->name('cmd.exec');
   });
 });
 
