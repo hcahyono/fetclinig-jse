@@ -32,10 +32,11 @@
 
         <div class="x_content">
           <div class="row">
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+            {{-- <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
-                {{-- <div class="icon"><i class="fa fa-caret-square-o-right"></i>
-                </div> --}}
+                <div class="icon"><i class="fa fa-caret-square-o-right"></i>
+                </div>
                 <div class="count">VCC0001098808089</div>
 
                 <h3>New Sign ups</h3>
@@ -74,7 +75,22 @@
                 <h3>New Sign ups</h3>
                 <p>Lorem ipsum psdea itgum rixt.</p>
               </div>
-            </div>
+            </div> --}}
+            <table id="table_data" class="table table-bordered table-striped" width="100%">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Kode Periksa</th>
+                  <th>Nama Hewan</th>
+                  <th>Tanggal Periksa</th>
+                  <th>Tanggal Diperiksa</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -83,4 +99,12 @@
   </div>
   <div class="clearfix"></div>
 
+@endsection
+
+@section('js')
+<script>
+  $(function(){
+
+  })
+</script>
 @endsection

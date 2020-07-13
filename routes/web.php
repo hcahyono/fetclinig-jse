@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/cmd/exec/{key?}', 'CmdController@artisanCmd')->name('cmd.exec');
+
 Auth::routes();
 
 // auth:web middleware
@@ -180,7 +182,11 @@ Route::group(['prefix' => 'admin'], function($app) {
     Route::put('/panduan/{panduan}', 'AdminController@panduanUpdate')->name('update.panduan');
     Route::delete('/panduan/{panduan}', 'AdminController@panduanDestroy')->name('delete.panduan');
 
-    Route::get('/cmd/exec/{key?}', 'CmdController@artisanCmd')->name('cmd.exec');
+    Route::post('/socket/serve', 'SocketController@serve')->name('socket.serve');
   });
+});
+
+Route::middleware(['auth','auth:admin'])->group(function() {
+  Route::post('ajax/periksa', 'AjaxController@dataPeriksa')->name('ajax.periksa');
 });
 

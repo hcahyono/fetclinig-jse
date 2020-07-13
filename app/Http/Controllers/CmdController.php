@@ -206,20 +206,6 @@ class CmdController extends Controller
               }
               break;
 
-            case 'socket_serve':
-              # RUNING websockets
-              try {
-                  $call = Artisan::call('websockets:serve --port=6321 --host=127.0.0.1');
-                  return ($call == 0) 
-                    ? redirect()->back()->with('success', 'socket successfully runing') 
-                    : redirect()->back()->with('error', 'failed when runing socket');
-              }
-              catch (Exception $e) {
-                  return redirect()->back()->with('error', 'failed when runing socket. '. $e->getMessage());
-              }
-              return redirect()->back()->with('success', 'socket successfully runing');
-              break;
-
             default:
                 # url not found
                 App::abort(404);
